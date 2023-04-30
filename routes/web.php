@@ -29,4 +29,4 @@ Route::middleware([
 
 Route::get('/test', function (){
     return view('admin/dashboard');
-});
+})->middleware('role:allAdmin');
