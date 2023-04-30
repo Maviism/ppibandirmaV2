@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/test', function (){
-    return view('admin/dashboard');
-})->middleware('role:allAdmin');
+
+
+Route::prefix('admin')
+    ->middleware(['auth:sanctum', 'verified'])
+    ->group(function(){
+        Route::get('/', function(){
+            return view('admin/dashboard');
+        })->middleware('role:allAdmin');     
+        Route::resource('/data-anggota', UserController::class)->middleware('role:adminkeu');
+});
