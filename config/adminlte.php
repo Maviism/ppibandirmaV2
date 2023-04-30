@@ -320,7 +320,7 @@ return [
         [
             'text' => 'Event Manager',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-calendar',
+            'icon' => 'fas fa-fw fa-calendar-check',
             'icon_color' => 'warning',
             'submenu' => [
                 [
@@ -374,7 +374,7 @@ return [
         ],
         [
             'text'    => 'Keorganisasian',
-            'icon'    => 'fas fa-fw fa-file',
+            'icon'    => 'fas fa-fw fa-file-archive',
             'icon_color' => 'info',
             'url' => '#'
         ],
