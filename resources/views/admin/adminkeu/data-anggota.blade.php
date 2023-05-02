@@ -8,10 +8,10 @@
 @section('content')
     <div class="mb-3 row">
         <a href="{{ route('data-anggota.create') }}" class="btn btn-primary text-default mx-1 shadow" title="Edit">
-            <i class="fa fa-lg fa-fw fa-user-plus"></i>Tambah anggota
+            <i class="fa fa-lg fa-fw fa-user-plus mr-1"></i>Tambah anggota
         </a>
         <button type="button" class="btn bg-purple text-default mx-1 shadow position-relative" data-toggle="modal" data-target="#konfirmasiAnggota">
-            <i class="fa fa-lg fa-fw fa-user-check"></i>Konfirmasi anggota
+            <i class="fa fa-lg fa-fw fa-user-check mr-1"></i>Konfirmasi anggota
             <span class="position-absolute top-0 start-100 badge rounded-pill bg-danger text-md" style="transform: translate(-0%, -40%);">
                 {{$unapprovedUser->count()}}
             </span>
@@ -40,7 +40,7 @@
     </div>
     {{-- Minimal example / fill data using the component slot --}}
     <x-adminlte-datatable id="table2" :heads="[
-            ['label' => 'ID', 'width'=> 2 ],
+            ['label' => 'No', 'width'=> 2 ],
             'Name',
             'Phone',
             ['label' => 'Angkatan', 'width' => 5],
@@ -48,7 +48,7 @@
         ]" head-theme="dark" striped hoverable bordered compressed with-buttons>
         @foreach($users as $user)
             <tr>
-                <td>{{ $user->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->arrival_year }}</td>
@@ -67,9 +67,19 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+@if(session('sweetAlert'))
+    <script>
+        $(document).ready(function(){
+            Swal.fire(
+                'Berhasil menambahkan anggota!',
+                '',
+                'success'
+            )
+        })
+    </script>
+@endif
+
 @stop

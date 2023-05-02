@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
                 'user_id' => 1,
                 'university' => 'Bandirma on yedi eylul',
                 'faculty' => 'IIBF',
-                'departman' => 'Iktisad',
+                'department' => 'Iktisad',
                 'arrival_year' => '2019',
                 'status' => 'kuliah',
                 'type_of_education' => 's1'
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
                 'user_id' => 2,
                 'university' => 'Bandirma on yedi eylul',
                 'faculty' => 'Muhendislik',
-                'departman' => 'Elektro',
+                'department' => 'Elektro',
                 'arrival_year' => '2020',
                 'status' => 'kuliah',
                 'type_of_education' => 's1'
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
                 'user_id' => 3,
                 'university' => 'Bandirma on yedi eylul',
                 'faculty' => 'Muhendislik',
-                'departman' => 'Bilgisayar',
+                'department' => 'Bilgisayar',
                 'arrival_year' => '2020',
                 'status' => 'kuliah',
                 'type_of_education' => 's1'
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
                 'user_id' => 4,
                 'university' => 'Bandirma on yedi eylul',
                 'faculty' => 'Muhendislik',
-                'departman' => 'Elektro',
+                'department' => 'Elektro',
                 'arrival_year' => '2020',
                 'status' => 'lulus',
                 'type_of_education' => 's2'

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('university');
             $table->string('faculty');
-            $table->string('departman');
+            $table->string('department');
             $table->integer('arrival_year');
             $table->string('status'); //Tomer, Active, Mezun
             $table->string('type_of_education'); //s1, s2, s3

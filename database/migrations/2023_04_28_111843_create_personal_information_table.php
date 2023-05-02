@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('gender');
             $table->string('birthday');
             $table->string('phone_number');
-            $table->string('type_of_residence'); //(apart, asrama)
-            $table->string('province');
-            $table->string('city');
-            $table->string('district');
-            $table->text('address_tr');
-            $table->text('address_id');
+            $table->string('type_of_residence')->nullable(); //(apart, asrama)
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+            $table->string('district')->nullable();
+            $table->text('address_tr')->nullable();
+            $table->text('address_id')->nullable();
             $table->timestamps();
         });
     }

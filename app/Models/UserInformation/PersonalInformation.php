@@ -10,6 +10,13 @@ class PersonalInformation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'phone_number',
+        'birthday',
+        'gender',
+        'address_tr',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

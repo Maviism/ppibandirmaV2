@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -55,9 +58,40 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        return 'hello';
+        try {
+            DB::transaction(function () use ($request) : void{
+                $user = User::create([
+                    'name' => $request->iFullname,
+                    'email' => $request->iMail,
+                    'password' => Hash::make(Str::random(16)),
+                    'is_approved' => 1
+                ]);
+            
+                $user->personalInformation()->create([
+                    'phone_number' => $request->iPhone,
+                    'birthday' => $request->iBirthday,
+                    'gender' => $request->iGender,
+                    'address_tr' => $request->iAddress,
+                ]);
+
+                $user->education()->create([
+                    'arrival_year' => $request->iArrivalYear,
+                    'type_of_education' => $request->iEducationType,
+                    'university' => $request->iUniv,
+                    'faculty' => $request->iFaculty,
+                    'department' => $request->iDepartment,
+                    'status' => $request->iStatus,
+                ]);
+            });
+        } catch (Exception $e) {
+            if (isset($user)) {
+                $user->delete();
+            }
+            return redirect('admin/data-anggota/create');
+        }
+        return redirect('admin/data-anggota')->with('sweetAlert', true);
     }
 
     /**
