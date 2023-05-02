@@ -1,34 +1,33 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Anggota')
+@section('title', 'Data Alumni')
 
 @section('content_header')
-    <h1>Data Anggota</h1>
+    <h1>Data Alumni</h1>
 @stop
 
 @section('content')
-    <p>Should be data anggota.</p>
     {{-- Minimal example / fill data using the component slot --}}
     <x-adminlte-datatable id="table2" :heads="[
-            'ID',
+            ['label' => 'ID', 'width'=> 2 ],
             'Name',
-            ['label' => 'Phone', 'width' => 40],
+            'Phone',
+            ['label' => 'Angkatan', 'width' => 5],
             ['label' => 'Actions', 'no-export' => true, 'width' => 5],
         ]" head-theme="dark" striped hoverable bordered compressed with-buttons>
-        @foreach($users as $user)
+        @foreach($graduatedUsers as $user)
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->phone_number }}</td>
-                <td>
-                    <nobr>
-                        <button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </button>
-                        <button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>
-                    </nobr>
+                <td>{{ $user->arrival_year }}</td>
+                <td style="white-space: nowrap;">
+                    <button class="btn btn-xs btn-default text-primary shadow" title="Edit">
+                        <i class="fa fa-lg fa-fw fa-pen"></i>
+                    </button>
+                    <button class="btn btn-xs btn-default text-danger shadow" title="Delete">
+                        <i class="fa fa-lg fa-fw fa-trash"></i>
+                    </button>
                 </td>
                 
             </tr>

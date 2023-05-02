@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\UserInformation\Education;
+use App\Models\UserInformation\PersonalInformation;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -39,6 +41,46 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 'user',
             ],
+        ]);
+
+        Education::insert([
+            [
+                'user_id' => 1,
+                'university' => 'Bandirma on yedi eylul',
+                'faculty' => 'IIBF',
+                'departman' => 'Iktisad',
+                'arrival_year' => '2019',
+                'status' => 'kuliah',
+                'type_of_education' => 's1'
+            ],
+            [
+                'user_id' => 2,
+                'university' => 'Bandirma on yedi eylul',
+                'faculty' => 'Muhendislik',
+                'departman' => 'Elektro',
+                'arrival_year' => '2020',
+                'status' => 'kuliah',
+                'type_of_education' => 's1'
+            ],
+            [
+                'user_id' => 3,
+                'university' => 'Bandirma on yedi eylul',
+                'faculty' => 'Muhendislik',
+                'departman' => 'Bilgisayar',
+                'arrival_year' => '2020',
+                'status' => 'kuliah',
+                'type_of_education' => 's1'
+            ],
+            [
+                'user_id' => 4,
+                'university' => 'Bandirma on yedi eylul',
+                'faculty' => 'Muhendislik',
+                'departman' => 'Elektro',
+                'arrival_year' => '2020',
+                'status' => 'lulus',
+                'type_of_education' => 's2'
+            ],
+            
         ]);
     }
 }

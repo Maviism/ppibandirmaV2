@@ -13,12 +13,36 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users =  DB::select('SELECT u.id, u.name, u.email, p.phone_number FROM users as u LEFT JOIN personal_information as p ON u.id = p.user_id');
-        return view('admin.adminkeu.index', [
-            'users' => $users
+
+        $allUsers = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                    ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                    ->whereNotIn('e.status', ['lulus']) 
+                    ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year')
+                    ->get();
+        $users = $allUsers->where('is_approved', 1);
+        $unapprovedUser = $allUsers->where('is_approved', 0);
+
+        return view('admin.adminkeu.data-anggota', [
+            'users' => $users,
+            'unapprovedUser' => $unapprovedUser
         ]);
+    }
 
+    public function dataAlumni()
+    {
+        $users = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                    ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                    ->where('e.status', ['lulus']) 
+                    ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year')
+                    ->get();
 
+        return view('admin.adminkeu.data-alumni', [
+            'graduatedUsers' => $users,
+        ]);
+    }
+
+    public function analytic(){
+        return view('admin.adminkeu.analytic');
     }
 
     /**
@@ -26,14 +50,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.adminkeu.tambah-anggota');
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        return 'hello';
     }
 
     /**

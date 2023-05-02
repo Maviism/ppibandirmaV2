@@ -1,0 +1,15 @@
+.line {
+    border-bottom : 2px solid #0D6EFD;
+}
+
+.bold {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+@media (min-width: 576px) {
+    .line {
+        border-right : 2px solid #0D6EFD;
+        border-bottom: 0px;
+    }
+}
