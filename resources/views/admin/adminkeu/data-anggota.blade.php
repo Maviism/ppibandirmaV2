@@ -7,7 +7,7 @@
 @stop
 @section('content')
     <div class="mb-3 row">
-        <a href="{{ route('data-anggota.create') }}" class="btn btn-primary text-default mx-1 shadow" title="Edit">
+        <a href="{{ route('dataanggota.create') }}" class="btn btn-primary text-default mx-1 shadow" title="Edit">
             <i class="fa fa-lg fa-fw fa-user-plus mr-1"></i>Tambah anggota
         </a>
         <button type="button" class="btn bg-purple text-default mx-1 shadow position-relative" data-toggle="modal" data-target="#konfirmasiAnggota">
@@ -53,9 +53,9 @@
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->arrival_year }}</td>
                 <td style="white-space: nowrap;">
-                    <button class="btn btn-xs btn-default text-primary shadow" title="Edit">
+                    <a href="{{ route('dataanggota.edit', $user)}}" class="btn btn-xs btn-default text-primary shadow" title="Edit">
                         <i class="fa fa-lg fa-fw fa-pen"></i>
-                    </button>
+                    </a>
                     <button class="btn btn-xs btn-default text-danger shadow" title="Delete">
                         <i class="fa fa-lg fa-fw fa-trash"></i>
                     </button>

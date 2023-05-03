@@ -22,9 +22,9 @@
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->arrival_year }}</td>
                 <td style="white-space: nowrap;">
-                    <button class="btn btn-xs btn-default text-primary shadow" title="Edit">
+                    <a href="{{ route('dataanggota.edit', $user)}}" class="btn btn-xs btn-default text-primary shadow" title="Edit">
                         <i class="fa fa-lg fa-fw fa-pen"></i>
-                    </button>
+                    </a>
                     <button class="btn btn-xs btn-default text-danger shadow" title="Delete">
                         <i class="fa fa-lg fa-fw fa-trash"></i>
                     </button>

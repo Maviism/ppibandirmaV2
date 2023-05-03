@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'User review')
+@section('title', 'Ubah data')
 
 @section('content_header')
-    <h1>Review data anggota</h1>
+    <h1>Ubah data anggota</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <form action="/admin/datareview/{{$user->id}}" method="POST">
         @csrf
         @method('PUT')
-        <input type="text" name="typeRequest" value="review" hidden />
+        <input type="text" name="typeRequest" value="edit" hidden />
         <div class="row p-2 rounded" style="background-color: #FFF;">
             <div class="container col-md-6 line">
                 <p class="text-primary bold mt-1">Informasi Umum</p>
@@ -57,6 +57,14 @@
                         </div>
                     </div>
                 </div>
+                {{$user->role}}
+                <x-adminlte-select name="iRole" label="Role" enable-old-support>
+                    <option value="admin" @if($user->role == 'admin') selected @endif>Admin</option>
+                    <option value="adminkeu" @if($user->role == 'adminkeu') selected @endif>Adminkeu</option>
+                    <option value="akastrat" @if($user->role == 'akastrat') selected @endif>Akastrat</option>
+                    <option value="medkraf" @if($user->role == 'medkraf') selected @endif>Medkraf</option>
+                    <option value="user" @if($user->role == 'user') selected @endif>User</option>
+                </x-adminlte-select>
             </div>
             <div class="col-md-6">
                 <p class="text-primary bold mt-1">Pendidikan</p>

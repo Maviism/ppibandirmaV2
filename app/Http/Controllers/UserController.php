@@ -90,9 +90,9 @@ class UserController extends Controller
             if (isset($user)) {
                 $user->delete();
             }
-            return redirect('admin/data-anggota/create');
+            return redirect('admin/dataanggota/create');
         }
-        return redirect('admin/data-anggota')->with('sweetAlert', true);
+        return redirect('admin/dataanggota')->with('sweetAlert', true);
     }
 
     /**
@@ -108,7 +108,14 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                    ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                    ->where('users.id', $id) 
+                    ->select('users.id', 'users.role','users.name', 'users.email', 'users.is_approved' ,'p.*', 'e.*')
+                    ->first();
+        return view('admin.adminkeu.edit-anggota', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -118,12 +125,16 @@ class UserController extends Controller
     {
         //
         $user = User::with(['education', 'personalInformation'])->find($id);
-
+        $isAlumni = $user->education->status;
         $user->update([
             'name' => $request->iFullname,
             'email' => $request->iMail,
             'is_approved' => 1
         ]);
+
+        if(isset($request->iRole)){
+            $user->update(['role' => $request->iRole]);
+        }
 
         $education = $user->education;
         $education->update([
@@ -143,7 +154,18 @@ class UserController extends Controller
             'address_tr' => $request->iAddress,
         ]);
 
-        return redirect('admin/data-anggota')->with('success', 'Anggota berhasil ditambahkan!');
+        $message = '';
+        if($request->typeRequest == 'review'){
+            $message = 'Data '. $user->name .' berhasil ditambahkan!';
+        }elseif($request->typeRequest == 'edit'){
+            $message = 'Data berhasil diubah!';
+        }
+
+        if($isAlumni === 'Lulus'){
+            return redirect('admin/dataalumni')->with('success', $message);
+        }
+
+        return redirect('admin/dataanggota')->with('success', $message);
     }
 
     public function showUserReview(string $id)

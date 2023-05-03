@@ -341,7 +341,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Data anggota',
-                    'url'  => '/admin/data-anggota',
+                    'url'  => '/admin/dataanggota',
                     'icon' => 'fas fa-fw fa-users',
                 ],
                 [
