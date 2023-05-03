@@ -37,6 +37,8 @@ Route::prefix('admin')
             return view('admin/dashboard');
         })->middleware('role:allAdmin');     
         Route::resource('/data-anggota', UserController::class)->middleware('role:adminkeu');
+        Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview'])->middleware('role:adminkeu');
+        Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved')->middleware('role:adminkeu');
         Route::get('/data-alumni', [UserController::class, 'dataAlumni'])->middleware('role:adminkeu');
         Route::get('/analytic', [UserController::class, 'analytic'])->middleware('role:adminkeu');
 });

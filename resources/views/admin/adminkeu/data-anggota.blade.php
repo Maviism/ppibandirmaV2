@@ -27,10 +27,10 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->arrival_year }}</td>
                         <td style="white-space: nowrap;">
-                            <button class="btn btn-xs btn-danger shadow" title="Edit">
+                            <a href="/admin/datareview/{{$user->id}}" class="btn btn-xs btn-danger shadow" title="Edit">
                                 Review
                                 <i class="fa fa-lg fa-fw fa-exclamation-circle"></i>
-                            </button>
+                            </a>
                         </td>
                         
                     </tr>
@@ -70,15 +70,25 @@
 @stop
 
 @section('js')
-@if(session('sweetAlert'))
+
+@if(Session::has('success'))
     <script>
         $(document).ready(function(){
-            Swal.fire(
-                'Berhasil menambahkan anggota!',
-                '',
-                'success'
-            )
+            Swal.fire({
+                title: 'Berhasil',
+                text: '{{ Session::get("success")}}',
+                icon: 'success'
+            })
         })
+    </script>
+@endif
+@if(Session::has('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ Session::get("error") }}',
+        });
     </script>
 @endif
 

@@ -44,7 +44,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function analytic(){
+    public function analytic()
+    {
         return view('admin.adminkeu.analytic');
     }
 
@@ -113,9 +114,51 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUserRequest $request, string $id)
     {
         //
+        $user = User::with(['education', 'personalInformation'])->find($id);
+
+        $user->update([
+            'name' => $request->iFullname,
+            'email' => $request->iMail,
+            'is_approved' => 1
+        ]);
+
+        $education = $user->education;
+        $education->update([
+            'status' => $request->iStatus,
+            'arrival_year' => $request->iArrivalYear,
+            'type_of_education' => $request->iEducationType,
+            'university' => $request->iUniv,
+            'faculty' => $request->iFaculty,
+            'department' => $request->iDepartment,
+        ]);
+
+        $profil = $user->personalInformation;
+        $profil->update([
+            'phone_number' => $request->iPhone,
+            'birthday' => $request->iBirthday,
+            'gender' => $request->iGender,
+            'address_tr' => $request->iAddress,
+        ]);
+
+        return redirect('admin/data-anggota')->with('success', 'Anggota berhasil ditambahkan!');
+    }
+
+    public function showUserReview(string $id)
+    {
+        $user = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                    ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                    ->where('users.id', $id) 
+                    ->select('users.id', 'users.name', 'users.email', 'users.is_approved' ,'p.*', 'e.*')
+                    ->first();
+        if($user->is_approved){
+            return redirect('/admin/data-anggota');
+        }
+        return view('admin.adminkeu.review-anggota', [
+            'user' => $user
+        ]);
     }
 
     /**

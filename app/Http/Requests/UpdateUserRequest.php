@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,9 +21,9 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
+        return [
             'iFullname' => 'required|max:255|string',
-            'iMail' => 'required|unique:users,email',
+            'iMail' => 'required|unique:users,email'.$this->user->id,
             'iPhone' => 'required|integer|min_digits:6|max_digits:16',
             'iAddress' => 'nullable',
             'iBirthday' => 'required',
@@ -31,9 +31,5 @@ class StoreUserRequest extends FormRequest
             'iFaculty' => 'required',
             'iDepartment' => 'required'
         ];
-        if(request()->isMethod('PUT')){
-            $rules['iMail'] = 'required|unique:users,email,'.$this->id;
-        }
-        return $rules;
     }
 }
