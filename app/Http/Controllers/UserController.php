@@ -46,7 +46,31 @@ class UserController extends Controller
 
     public function analytic()
     {
-        return view('admin.adminkeu.analytic');
+        $arrivalYearData = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                    ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                    ->select('e.arrival_year', 
+                            DB::raw('SUM(CASE WHEN p.gender = "Laki-laki" THEN 1 ELSE 0 END) AS male'), 
+                            DB::raw('SUM(CASE WHEN p.gender = "Perempuan" THEN 1 ELSE 0 END) AS female'))
+                    ->groupBy('e.arrival_year')
+                    ->get();
+
+        $educationType = DB::table('education')
+                            ->select('type_of_education', DB::raw('COUNT(*) as count'))
+                            ->whereNotIn('status', ['lulus']) 
+                            ->groupBy('type_of_education')
+                            ->get();
+
+        $educationStatus = DB::table('education')
+                            ->select('status', DB::raw('COUNT(*) as count'))
+                            ->groupBy('status')
+                            ->get();
+
+        // dd($educationStatus);
+        return view('admin.adminkeu.analytic', [
+            'arrivalYearData' => $arrivalYearData,
+            'educationType' => $educationType,
+            'educationStatus' => $educationStatus
+        ]);
     }
 
     /**
