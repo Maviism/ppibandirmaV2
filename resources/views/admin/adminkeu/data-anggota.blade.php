@@ -8,10 +8,10 @@
 @section('content')
     <div class="mb-3 row">
         <a href="{{ route('dataanggota.create') }}" class="btn btn-primary text-default mx-1 shadow" title="Edit">
-            <i class="fa fa-lg fa-fw fa-user-plus mr-1"></i>Tambah anggota
+            <i class="fa fa-lg fa-fw fa-user-plus mr-1"></i>Tambah Anggota
         </a>
         <button type="button" class="btn bg-purple text-default mx-1 shadow position-relative" data-toggle="modal" data-target="#konfirmasiAnggota">
-            <i class="fa fa-lg fa-fw fa-user-check mr-1"></i>Konfirmasi anggota
+            <i class="fa fa-lg fa-fw fa-user-check"></i>Konfirmasi User
             <span class="position-absolute top-0 start-100 badge rounded-pill bg-danger text-md" style="transform: translate(-0%, -40%);">
                 {{$unapprovedUser->count()}}
             </span>
@@ -56,7 +56,7 @@
                     <a href="{{ route('dataanggota.edit', $user)}}" class="btn btn-xs btn-default text-primary shadow" title="Edit">
                         <i class="fa fa-lg fa-fw fa-pen"></i>
                     </a>
-                    <button class="btn btn-xs btn-default text-danger shadow" title="Delete">
+                    <button onclick="deleteAnggota({{$user->id}},'{{$user->name}}')" id="deleteAnggota" class="btn btn-xs btn-default text-danger shadow" title="Delete">
                         <i class="fa fa-lg fa-fw fa-trash"></i>
                     </button>
                 </td>
@@ -91,5 +91,86 @@
         });
     </script>
 @endif
+<script>
+    // $('#deleteAnggota').click(function() {
+    //     Swal.fire({
+    //         title: 'Kenapa menghapus anggota ini?',
+    //         input: 'text',
+    //         inputAttributes: {
+    //             autocapitalize: 'off',
+    //             placeholder: 'contoh: pindah, salah input'
+    //         },
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Hapus data ini',
+    //         confirmButtonColor : '#dc3545',
+    //         showLoaderOnConfirm: true,
+    //         preConfirm: (login) => {
+    //             return fetch(`//api.github.com/users/${login}`)
+    //             .then(response => {
+    //                 if (!response.ok) {
+    //                 throw new Error(response.statusText)
+    //                 }
+    //                 return response.json()
+    //             })
+    //             .catch(error => {
+    //                 Swal.showValidationMessage(
+    //                 `Request failed: ${error}`
+    //                 )
+    //             })
+    //         },
+    //         allowOutsideClick: () => !Swal.isLoading()
+    //         }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             Swal.fire({
+    //             title: `${result.value.login}'s avatar`,
+    //             imageUrl: result.value.avatar_url
+    //             })
+    //         }
+    //     })
+    // });
+
+    function deleteAnggota(id, name){
+        Swal.fire({
+            title: `yakin ingin menghapus data ${name}?`,
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off',
+                placeholder: 'masukan alasan | contoh: pindah, salah input'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Hapus data ini',
+            confirmButtonColor : '#dc3545',
+            showLoaderOnConfirm: true,
+            preConfirm: (reason) => {
+                return fetch(`/admin/dataanggota/${id}`,{
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error(response.statusText)
+                    }
+                    return response.json()
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                    )
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: result.value.message
+                });
+                location.reload();
+            }
+        })
+    }
+    
+</script>
 
 @stop
