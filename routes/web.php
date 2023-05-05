@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Organisation\KabinetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,12 +34,16 @@ Route::middleware([
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function(){
-        Route::get('/', function(){
-            return view('admin/dashboard');
-        })->middleware('role:allAdmin');     
-        Route::resource('/dataanggota', UserController::class)->middleware('role:adminkeu');
-        Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview'])->middleware('role:adminkeu');
-        Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved')->middleware('role:adminkeu');
-        Route::get('/data-alumni', [UserController::class, 'dataAlumni'])->middleware('role:adminkeu');
-        Route::get('/analytic', [UserController::class, 'analytic'])->middleware('role:adminkeu');
+        Route::middleware('role:allAdmin')->group(function(){
+            Route::get('/', function(){ return view('admin/dashboard'); });
+            Route::resource('/kabinet', KabinetController::class);
+        });
+
+        Route::middleware('role:adminkeu')->group(function(){
+            Route::resource('/dataanggota', UserController::class);
+            Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview']);
+            Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
+            Route::get('/dataalumni', [UserController::class, 'dataAlumni']);
+            Route::get('/analytic', [UserController::class, 'analytic']);
+        });   
 });

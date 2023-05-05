@@ -346,7 +346,7 @@ return [
                 ],
                 [
                     'text' => 'Data alumni',
-                    'url'  => '/admin/data-alumni',
+                    'url'  => '/admin/dataalumni',
                     'icon' => 'fas fa-fw fa-graduation-cap',
                 ],
                 [
@@ -379,7 +379,24 @@ return [
             'text'    => 'Keorganisasian',
             'icon'    => 'fas fa-fw fa-file-archive',
             'icon_color' => 'info',
-            'url' => '#'
+            'submenu' => [
+                [
+                    'text' => 'Kabinet',
+                    'url'  => 'admin/kabinet',
+                ],
+                [
+                    'text' => 'Request Design',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Pengajuan Dana',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Review Whatsapp',
+                    'url'  => '#',
+                ],
+            ],
         ],
     ],
 
