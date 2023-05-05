@@ -70,19 +70,19 @@ class UserSeeder extends Seeder
                 'phone_number' => '905525918425',
                 'address_tr' => 'Levent mahallesi',
                 'birthday' => '02/10',
-                'gender' => 'gender'
+                'gender' => 'Laki-laki'
             ],
         ]);
 
         Education::insert([
             [
                 'user_id' => 1,
-                'university' => 'Bandirma on yedi eylul',
+                'university' => 'Bandırma Onyedi Eylül Üniversitesi',
                 'faculty' => 'IIBF',
                 'department' => 'Iktisad',
                 'arrival_year' => '2019',
-                'status' => 'kuliah',
-                'type_of_education' => 'sarjana'
+                'status' => 'Kuliah',
+                'type_of_education' => 'Sarjana'
             ],
             [
                 'user_id' => 2,
@@ -90,8 +90,8 @@ class UserSeeder extends Seeder
                 'faculty' => 'Muhendislik',
                 'department' => 'Elektro',
                 'arrival_year' => '2020',
-                'status' => 'kuliah',
-                'type_of_education' => 'magister'
+                'status' => 'Kuliah',
+                'type_of_education' => 'Magister'
             ],
             [
                 'user_id' => 3,
@@ -99,17 +99,17 @@ class UserSeeder extends Seeder
                 'faculty' => 'Muhendislik',
                 'department' => 'Bilgisayar',
                 'arrival_year' => '2020',
-                'status' => 'kuliah',
-                'type_of_education' => 'sarjana'
+                'status' => 'Kuliah',
+                'type_of_education' => 'Sarjana'
             ],
             [
                 'user_id' => 4,
-                'university' => 'Bandirma on yedi eylul',
+                'university' => 'Bandırma Onyedi Eylül Üniversitesi',
                 'faculty' => 'Muhendislik',
                 'department' => 'Elektro',
                 'arrival_year' => '2020',
-                'status' => 'lulus',
-                'type_of_education' => 'doktoral'
+                'status' => 'Lulus',
+                'type_of_education' => 'Doktoral'
             ],
             
         ]);

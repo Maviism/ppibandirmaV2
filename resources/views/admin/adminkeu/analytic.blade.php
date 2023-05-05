@@ -18,14 +18,14 @@
         <div class="card-body">
           <div class="d-flex mt-n3">
               <p class="d-flex flex-column">
-                <span class="text-bold text-lg">820</span>Total anggota
+                <span class="text-bold text-lg">{{ $educationStatus->whereIn('status', ['Kuliah', 'Tömer'])->sum('count') }} <span class="fw-semibold text-md">({{ $educationStatus->where('status', 'Lulus')->sum('count') }})</span></span>Total anggota
               </p>
-              <p class="ml-auto d-flex flex-column text-right">
+              <!-- <p class="ml-auto d-flex flex-column text-right">
               <span class="text-success">
                   <i class="fas fa-arrow-up"></i> 12.5%
               </span>
               <span class="text-muted">Since last year</span>
-              </p>
+              </p> -->
           </div>
         <div class="position-relative mb-4">
             <canvas id="visitors-chart" height="200"></canvas>
@@ -48,12 +48,44 @@
         </div>
       </div>
       <div class="card-body">
+        @php 
+        $colors = ['red', 'green', 'blue', 'yellow']; shuffle($colors); 
+        $colors2 = ['purple', 'green', 'blue', 'yellow','pink']; shuffle($colors2); 
         
-      <p class="mb-n1">Bandırma on yedi eylul</p>
-      <x-adminlte-progress theme="primary" value=95/>
-      <p class="mb-n1 mt-1">Çanakale on sekiz univ</p>
-      <x-adminlte-progress theme="purple" value=52/>
+        @endphp
+        <div id="accordion">
+          @foreach($universityData as $university)
+          <div class="card border-0 shadow-none">
+              <h4 class="card-title w-100">
+                <div class="d-block w-100" data-toggle="collapse" href="#collapse{{$loop->iteration}}">
+                  <div class="progress-group">
+                    <span class=" ">{{ $university->university }}</span>
+                    <span class="float-right"><b>{{ $university->count }}</b>/{{ $universityData->sum('count') }}</span>
+                    <div class="progress">
+                      <div class="progress-bar bg-{{ $colors[$loop->index % count($colors)] }} progress-bar-striped" style="width: {{ ($university->count / $universityData->sum('count'))*100 }}%"></div>
+                    </div>
+                  </div>
+                </div>
+              </h4>
+            <div id="collapse{{$loop->iteration}}" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                @foreach($facultyCounts as $faculty)
+                @if($university->university == $faculty->university)
+                <div class="progress-group">
+                  <span class=" ">{{ $faculty->faculty }}</span>
+                  <span class="float-right"><b>{{ $faculty->count }}</b>/{{ $universityData->sum('count') }}</span>
+                  <div class="progress">
+                    <div class="progress-bar bg-{{ $colors2[$loop->index % count($colors2)] }}" style="width: {{ ($faculty->count / $universityData->sum('count'))*100 }}%"></div>
+                  </div>
+                </div>
+                @endif
+                @endforeach
+              </div>
+            </div>
 
+          </div>
+          @endforeach
+        </div>
       </div>
     </div>
   </div>

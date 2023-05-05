@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="p-2 rounded" style="background-color: #FFF;">
-        <form action="{{route('data-anggota.store')}}" method="POST">
+        <form action="{{route('dataanggota.store')}}" method="POST">
         @csrf
         <div class="row p-2 rounded" style="background-color: #FFF;">
             <div class="container col-md-6 line">
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="row justify-content-end mx-3 mb-3">
-            <a href="{{route('data-anggota.index')}}" class="btn btn-danger mx-3"><i class="fas fa-lg fa-ban mr-1"></i>Cancel</a>
+            <a href="{{route('dataanggota.index')}}" class="btn btn-danger mx-3"><i class="fas fa-lg fa-ban mr-1"></i>Cancel</a>
             <x-adminlte-button class="" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save"/>
         </div>
         </form>
