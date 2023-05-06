@@ -319,18 +319,17 @@ return [
         ['header' => 'Menus'],
         [
             'text' => 'Event Manager',
-            'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-calendar-check',
             'icon_color' => 'warning',
             'submenu' => [
                 [
-                    'text' => 'Events',
-                    'url' => '#',
+                    'text' => 'Absensi',
+                    'url' => 'admin/absensi'
                 ],
                 [
-                    'text' => 'Absensi',
-                    'url' => '#'
-                ]
+                    'text' => 'Events',
+                    'url' => 'admin/event',
+                ],
             ]
         ],
         [
@@ -517,6 +516,16 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+                ],
+            ],
+        ],
+        'BsCustomFileInput' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
                 ],
             ],
         ],

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Event\EventController;
+use App\Http\Controllers\Event\AbsensiController;
 use App\Http\Controllers\Organisation\KabinetController;
 
 /*
@@ -37,6 +39,9 @@ Route::prefix('admin')
         Route::middleware('role:allAdmin')->group(function(){
             Route::get('/', function(){ return view('admin/dashboard'); });
             Route::resource('/kabinet', KabinetController::class);
+            Route::resource('/event', EventController::class);
+            Route::resource('/absensi', AbsensiController::class);
+            Route::get('/scanner/{id}', [AbsensiController::class, 'showScanner'])->name('absen.scanner');
         });
 
         Route::middleware('role:adminkeu')->group(function(){
