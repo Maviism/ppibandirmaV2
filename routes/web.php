@@ -18,20 +18,8 @@ use App\Http\Controllers\Organisation\KabinetController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('index');
 });
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-
 
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])

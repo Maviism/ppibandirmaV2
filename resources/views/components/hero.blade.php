@@ -1,0 +1,1 @@
+<img src="assets/hero.JPG" alt="" class="rounded-b-3xl">
