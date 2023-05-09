@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form method="POST" action="{{ route('event.store') }}" class="needs-validation" novalidate>
+<form method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data" >
 <div class="card p-2 ">
     <div class="row">
         <div class="col-md-6">
@@ -28,9 +28,10 @@
                 </x-slot>
             </x-adminlte-input-date>
             <x-adminlte-select name="iType" label="Type" enable-old-support>
-                <option>Public</option>
-                <option>Private</option>
-                <option>Internal</option>
+                <option value="public">Public</option>
+                <option value="tömer">Tömer</option>
+                <option value="private">Private</option>
+                <option value="internal">Internal</option>
             </x-adminlte-select>
             <div>
                 <x-adminlte-input-file name="ifImage" id="imageInput" label="Upload image" placeholder="Choose a image..."/>

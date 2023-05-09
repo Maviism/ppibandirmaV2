@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('venue');
             $table->string('datetime');
             $table->string('image_url')->nullable();
+            $table->string('type')->default('public');
             $table->text('description');
             $table->string('gallery_url')->nullable();
             $table->string('responsible_dept')->nullable();
+            $table->integer('total_participants')->nullable(); //generate when event created
             $table->timestamps();
         });
     }

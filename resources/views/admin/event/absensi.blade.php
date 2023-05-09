@@ -7,11 +7,14 @@
 @stop
 
 @section('content')
-    <a href="{{ route('absen.scanner', $event->id)}}" class="btn bg-purple mb-1"><i class="fa fa-lg fa-qrcode mr-1"></i>Scan peserta</a>
-    <button type="button" class="btn bg-purple text-default mx-1 shadow mb-1" data-toggle="modal" data-target="#manualAbsensi">
-        <i class="fa fa-lg fa-fw fa-user-check"></i>Absensi manual
-    </button>
-    <x-adminlte-modal id="manualAbsensi" title="Absensi manual" theme="purple" icon="fas fa-user-check" size='lg'>
+    <a href="/admin/event" class="btn btn-info mb-1"><i class="fa fa-lg fa-chevron-left mr-1"></i>Kembali</a>
+    <div>
+        <a href="{{ route('absen.scanner', $event->id)}}" class="btn bg-purple mb-1"><i class="fa fa-lg fa-qrcode mr-1"></i>Scan peserta</a>
+        <button type="button" class="btn bg-purple text-default mx-1 shadow mb-1" data-toggle="modal" data-target="#manualAbsensi">
+            <i class="fa fa-lg fa-fw fa-user-check"></i>Absensi manual
+        </button>
+    </div>
+        <x-adminlte-modal id="manualAbsensi" title="Absensi manual" theme="purple" icon="fas fa-user-check" size='lg'>
         <x-adminlte-datatable id="table1" :heads="[
                 'Name',
                 ['label' => 'Angkatan', 'width' => 5],

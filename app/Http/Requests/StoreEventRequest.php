@@ -26,7 +26,7 @@ class StoreEventRequest extends FormRequest
             'iVenue' => 'required|string|max:124',
             'iDescription' => 'required|string',
             'iDatetime' => 'required',
-            'ifImage' => 'nullable|mimes:jpeg,png|max:2048'
+            'ifImage' => 'nullable|file|image|max:2048'
         ];
         return $rules;
     }
