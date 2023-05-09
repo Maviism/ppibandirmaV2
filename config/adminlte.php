@@ -317,21 +317,7 @@ return [
             'icon'        => 'fas fa-fw fa-home',
         ],
         ['header' => 'Menus'],
-        [
-            'text' => 'Event Manager',
-            'icon' => 'fas fa-fw fa-calendar-check',
-            'icon_color' => 'warning',
-            'submenu' => [
-                [
-                    'text' => 'Absensi',
-                    'url' => 'admin/absensi'
-                ],
-                [
-                    'text' => 'Events',
-                    'url' => 'admin/event',
-                ],
-            ]
-        ],
+
         [
             'text'    => 'Adminkeu',
             'can'     => ['admin','adminkeu'],
@@ -373,6 +359,17 @@ return [
             'icon'    => 'fas fa-fw fa-palette',
             'icon_color' => 'danger',
             'url' => '#'
+        ],
+        [
+            'text' => 'Event Manager',
+            'icon' => 'fas fa-fw fa-calendar-check',
+            'icon_color' => 'warning',
+            'submenu' => [
+                [
+                    'text' => 'Events',
+                    'url' => 'admin/event',
+                ],
+            ]
         ],
         [
             'text'    => 'Keorganisasian',

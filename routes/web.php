@@ -18,8 +18,8 @@ use App\Http\Controllers\Organisation\KabinetController;
 */
 
 Route::get('/', function () {
-    return view('welcome')->name('index');
-});
+    return view('welcome');
+})->name('index');
 
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])
@@ -28,7 +28,8 @@ Route::prefix('admin')
             Route::get('/', function(){ return view('admin/dashboard'); });
             Route::resource('/kabinet', KabinetController::class);
             Route::resource('/event', EventController::class);
-            Route::resource('/absensi', AbsensiController::class);
+            Route::resource('/absensi', AbsensiController::class)->except('store');
+            Route::post('/absensi/user/{id}', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/scanner/{id}', [AbsensiController::class, 'showScanner'])->name('absen.scanner');
         });
 
