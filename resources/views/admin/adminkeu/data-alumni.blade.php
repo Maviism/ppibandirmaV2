@@ -25,11 +25,7 @@
                     <a href="{{ route('dataanggota.edit', $user)}}" class="btn btn-xs btn-default text-primary shadow" title="Edit">
                         <i class="fa fa-lg fa-fw fa-pen"></i>
                     </a>
-                    <button class="btn btn-xs btn-default text-danger shadow" title="Delete">
-                        <i class="fa fa-lg fa-fw fa-trash"></i>
-                    </button>
                 </td>
-                
             </tr>
         @endforeach
     </x-adminlte-datatable>

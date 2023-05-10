@@ -60,9 +60,15 @@
                 <x-adminlte-select name="iRole" label="Role" enable-old-support>
                     <option value="admin" @if($user->role == 'admin') selected @endif>Admin</option>
                     <option value="adminkeu" @if($user->role == 'adminkeu') selected @endif>Adminkeu</option>
+                    <option value="advokasi" @if($user->role == 'advokasi') selected @endif>Advo</option>
+                    <option value="agama" @if($user->role == 'agama') selected @endif>Agama</option>
                     <option value="akastrat" @if($user->role == 'akastrat') selected @endif>Akastrat</option>
+                    <option value="psdm" @if($user->role == 'psdm') selected @endif>PSDM</option>
+                    <option value="keputrian" @if($user->role == 'keputrian') selected @endif>Keputrian</option>
                     <option value="medkraf" @if($user->role == 'medkraf') selected @endif>Medkraf</option>
-                    <option value="user" @if($user->role == 'user') selected @endif>User</option>
+                    <option value="spm" @if($user->role == 'spm') selected @endif>SPM</option>
+                    <option value="wirausaha" @if($user->role == 'wirausaha') selected @endif>Wirausaha</option>
+                    <option value="user" @if($user->role == 'user') selected @endif>Anggota</option>
                 </x-adminlte-select>
             </div>
             <div class="col-md-6">
@@ -76,8 +82,8 @@
                     <option value="doktoral" @if($user->type_of_education == 'doktoral') selected @endif>Doktoral</option>
                 </x-adminlte-select>
                 <x-adminlte-select name="iUniv" label="Universitas" enable-old-support>
-                    <option @if($user->university == 'Bandırma Onyedi Eylül Üniversitesi') selected @endif>Bandırma Onyedi Eylül Üniversitesi</option>
-                    <option @if($user->university == 'Çanakkale Onsekiz Mart Üniversitesi') selected @endif>Çanakkale Onsekiz Mart Üniversitesi</option>
+                    <option value="Bandırma Onyedi Eylül Üniversitesi" @if($user->university == 'Bandırma Onyedi Eylül Üniversitesi') selected @endif>Bandırma Onyedi Eylül Üniversitesi</option>
+                    <option value="Çanakkale Onsekiz Mart Üniversitesi" @if($user->university == 'Çanakkale Onsekiz Mart Üniversitesi') selected @endif>Çanakkale Onsekiz Mart Üniversitesi</option>
                 </x-adminlte-select>
                 <div id="facultyHelp" class="form-text text-gray">refensi nama fakultas & departemen <a href="https://www.bandirma.edu.tr/tr/www/Sayfa/Goster/BILGI-PAKETI-ve-DERS-KATALOGU-1079" target="_blank">banü</a> | <a href="https://ubys.comu.edu.tr/AIS/OutcomeBasedLearning/Home/Index?culture=tr-TR" target="_blank">çomü</a>.</div>
                 <x-adminlte-input name="iFaculty" value="{{$user->faculty}}" label="Fakultas" placeholder="contoh : ÖMER SEYFETTİN UYGULAMALI BİLİMLER FAKÜLTESİ" enable-old-support/>

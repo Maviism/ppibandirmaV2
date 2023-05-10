@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserInformation\DeletedUser;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -165,11 +166,13 @@ class UserController extends Controller
         $user->update([
             'name' => $request->iFullname,
             'email' => $request->iMail,
-            'is_approved' => 1
+            'is_approved' => 1,
         ]);
-
+        
         if(isset($request->iRole)){
-            $user->update(['role' => $request->iRole]);
+            $user->update([
+                'role' => $request->iRole
+            ]);
         }
 
         $education = $user->education;
@@ -222,10 +225,19 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
+        $request->validate([
+            'reason' => 'required|string'
+        ]);
         $user = User::findOrFail($id);
         $name = $user->name;
+        $arrival_year = $user->education->arrival_year;
+        DeletedUser::create([
+            'name' => $name,
+            'arrival_year' => $arrival_year,
+            'reason' => $request->reason
+        ]);
         $user->delete();
         
         return response()->json([

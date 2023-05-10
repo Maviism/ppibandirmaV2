@@ -92,61 +92,24 @@
     </script>
 @endif
 <script>
-    // $('#deleteAnggota').click(function() {
-    //     Swal.fire({
-    //         title: 'Kenapa menghapus anggota ini?',
-    //         input: 'text',
-    //         inputAttributes: {
-    //             autocapitalize: 'off',
-    //             placeholder: 'contoh: pindah, salah input'
-    //         },
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Hapus data ini',
-    //         confirmButtonColor : '#dc3545',
-    //         showLoaderOnConfirm: true,
-    //         preConfirm: (login) => {
-    //             return fetch(`//api.github.com/users/${login}`)
-    //             .then(response => {
-    //                 if (!response.ok) {
-    //                 throw new Error(response.statusText)
-    //                 }
-    //                 return response.json()
-    //             })
-    //             .catch(error => {
-    //                 Swal.showValidationMessage(
-    //                 `Request failed: ${error}`
-    //                 )
-    //             })
-    //         },
-    //         allowOutsideClick: () => !Swal.isLoading()
-    //         }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             Swal.fire({
-    //             title: `${result.value.login}'s avatar`,
-    //             imageUrl: result.value.avatar_url
-    //             })
-    //         }
-    //     })
-    // });
-
     function deleteAnggota(id, name){
         Swal.fire({
             title: `yakin ingin menghapus data ${name}?`,
             input: 'text',
             inputAttributes: {
                 autocapitalize: 'off',
-                placeholder: 'masukan alasan | contoh: pindah, salah input'
+                placeholder: 'masukan alasan|contoh: pindah, pulang ke indo, dll'
             },
             showCancelButton: true,
-            confirmButtonText: 'Hapus data ini',
+            confirmButtonText: 'Hapus anggota ini',
             confirmButtonColor : '#dc3545',
             showLoaderOnConfirm: true,
             preConfirm: (reason) => {
-                return fetch(`/admin/dataanggota/${id}`,{
+                return fetch(`/admin/dataanggota/${id}?reason=${reason}`,{
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
+                    },
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -164,9 +127,12 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                title: result.value.message
+                title: result.value.message,
+                timer: 5000,
+                didClose: () => {
+                    location.reload(); // reload the page after the delay
+                }
                 });
-                location.reload();
             }
         })
     }
