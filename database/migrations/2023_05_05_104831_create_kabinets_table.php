@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('periode');
-            $table->text('description');
-            $table->string('logo_url');
+            $table->text('description')->nullable();
+            $table->string('logo_url')->nullable();
             $table->timestamps();
         });
     }

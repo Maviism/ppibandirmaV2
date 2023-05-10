@@ -12,6 +12,8 @@ class KabinetPerson extends Model
     protected $fillable = [
         'kabinet_id',
         'name',
+        'position',
+        'is_leader',
         'description',
         'instagram',
         'profile_pict_url'

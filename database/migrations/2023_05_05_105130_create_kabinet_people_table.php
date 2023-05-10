@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('kabinet_id')->references('id')->on('kabinets')->onDelete('cascade');
             $table->string('name');
             $table->string('position');
-            $table->boolean('is_leader');
-            $table->text('description');
-            $table->string('instagram');
-            $table->string('profile_pict_url');
+            $table->boolean('is_leader')->default(0);
+            $table->text('description')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('profile_pict_url')->nullable();
             $table->timestamps();
         });
     }

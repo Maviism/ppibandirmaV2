@@ -1,13 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Kabinet')
+@section('title', 'Edit Kabinet')
 
 @section('content_header')
-    <h1>Buat Kabinet Baru</h1>
+    <h1>Edit Kabinet</h1>
 @stop
 
 @section('content')
-<a href="/admin/kabinet" class="btn btn-info mb-2"><i class="fa fa-md fa-chevron-left"></i> Kembali</a>
+<div class="row justify-content-between mx-1">
+    <a href="/admin/kabinet" class="btn btn-info mb-2"><i class="fa fa-md fa-chevron-left"></i> Kembali</a>
+    <button onclick="deleteKabinet({{$kabinet->id}},'{{$kabinet->name}}')" class="btn btn-danger mb-2"><i class="fa fa-md fa-trash"></i> Delete</button>
+</div>
 <section class="content">
     <form method="POST" action="{{ route('kabinet.store') }}" enctype="multipart/form-data">
     @csrf
@@ -23,9 +26,10 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <x-adminlte-input name="iName" label="Nama kabinet" placeholder="contoh : HepsiBurada" enable-old-support/>
-                    <x-adminlte-input name="iPeriode" label="Periode" placeholder="contoh : 2021-2022" enable-old-support/>
+                    <x-adminlte-input name="iName" label="Nama kabinet" placeholder="contoh : HepsiBurada" value="{{$kabinet->name}}" enable-old-support/>
+                    <x-adminlte-input name="iPeriode" label="Periode" placeholder="contoh : 2021-2022" value="{{$kabinet->periode}}" enable-old-support/>
                     <x-adminlte-textarea name="iDescription" label="Description" rows=3 placeholder="Insert description..." enable-old-support>
+                        {{$kabinet->description}}
                     </x-adminlte-textarea>
                     <x-adminlte-input-file name="ifLogoImage" id="imageInput" label="Logo Kabinet" placeholder="Choose a image..."/>
                 </div>
@@ -45,17 +49,36 @@
                 </div>
                 <div class="card-body">
                     <div id="members-container">
+                        @foreach($kabinet->kabinetPerson->groupBy('position') as $position => $persons)
                         <div class="form-group row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" name="position[0][name]" placeholder="Ketua" value="Ketua">
+                                <input type="text" class="form-control" name="position[0][name]" placeholder="Ketua" value="{{$position}}">
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="position[0][members][0][name]" placeholder="Nama Ketua">
+                            @foreach($persons as $person)
+                            @if($loop->first)
+                                <input type="text" class="form-control" name="position[0][members][0][name]" placeholder="Nama Ketua" value="{{$person->name}}">
                                 <input type="text" class="form-control" name="position[0][members][0][instagram]" placeholder="instagram | contoh: @ppibandirma">
                                 <input type="file" name="position[0][members][0][profile_pict]">
                                 <button type="button" class="btn btn-sm btn-success add-member mt-1" data-posisi="0">Tambah Anggota</button>
+                            @else
+                            <div class="input-group mb-1">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="position[${posisi_id}][members][${member_count}][name]" placeholder="Nama Anggota" value="{{$person->name}}">
+                                    <input type="text" class="form-control" name="position[${posisi_id}][members][${member_count}][instagram]" placeholder="instagram | contoh: @ppibandirma">
+                                    <input type="file" name="position[${posisi_id}][members][${member_count}][profile_pict]">
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger remove-member" type="button">Hapus</button>
+                                </div>
                             </div>
+                            @endif
+                            @endforeach
+                            </div>
+
                         </div>
+                        <hr class="bg-pink">
+                        @endforeach
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -71,7 +94,7 @@
     <div class="row">
         <div class="col-12">
             <a href="#" class="btn btn-secondary">Cancel</a>
-            <input type="submit" value="Create new Kabinet" class="btn btn-success float-right">
+            <input type="submit" disabled value="Edit Kabinet" class="btn btn-success float-right">
         </div>
     </div>
     </form>
@@ -128,5 +151,49 @@
             $(this).parent().parent().remove();
         });
     });
+
+    function deleteKabinet(id, name){
+        Swal.fire({
+            title: `yakin ingin menghapus data ${name}?`,
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off',
+                placeholder: 'write yes here'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Hapus kabinet ini',
+            confirmButtonColor : '#dc3545',
+            showLoaderOnConfirm: true,
+            preConfirm: (reason) => {
+                return fetch(`/admin/kabinet/${id}`,{
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error(response.statusText)
+                    }
+                    return response.json()
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                    )
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: result.value.message,
+                timer: 5000,
+                }).then(() => {
+                    window.location.href = '/admin/kabinet';
+                });;
+            }
+        })
+    }
 </script>
 @stop
