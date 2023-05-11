@@ -17,9 +17,10 @@ use App\Http\Controllers\Organisation\KabinetController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', function () { return view('welcome');})->name('index');
+Route::get('/event', function () { return view('Pages.event');})->name('event');
+Route::get('/member', function () { return view('Pages.member');})->name('member');
+Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
 
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])

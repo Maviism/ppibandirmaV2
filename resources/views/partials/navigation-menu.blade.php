@@ -18,13 +18,13 @@
                     <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
                         {{ __('Hi Bandirmans') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('event')">
+                    <x-nav-link href="{{ route('event') }}" :active="request()->routeIs('event')">
                         {{ __('Event') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('event')">
+                    <x-nav-link href="{{ route('member') }}" :active="request()->routeIs('member')">
                         {{ __('Member') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('event')">
+                    <x-nav-link href="{{ route('artikel') }}" :active="request()->routeIs('artikel')">
                         {{ __('Artikel') }}
                     </x-nav-link>
                 </div>
