@@ -5,3 +5,16 @@
 [x-cloak] {
     display: none;
 }
+
+/* @import url('https://fonts.googleapis.com/css?family=Poppins'); */
+/* @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+/* Set the default font family to Poppins */
+* {
+    font-family: 'Poppins', sans-serif;
+}

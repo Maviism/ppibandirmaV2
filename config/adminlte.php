@@ -349,6 +349,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Perpustakaan',
+                    'icon' => 'fas fa-fw fa-book',
                     'url'  => '#',
                 ],
             ],
@@ -373,8 +374,8 @@ return [
         ],
         [
             'text'    => 'Keorganisasian',
-            'icon'    => 'fas fa-fw fa-file-archive',
-            'icon_color' => 'info',
+            'icon'    => 'fas fa-fw fa-folder',
+            'icon_color' => 'pink',
             'submenu' => [
                 [
                     'text' => 'Kabinet',

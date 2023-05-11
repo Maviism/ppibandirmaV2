@@ -1,6 +1,7 @@
 <x-app-layout>
 @section('title', 'Home | ')
-    <x-hero />
-    helll
-    hello
+    
+    <x-hero/>
+    <x-about-us/>
+    <x-event/>
 </x-app-layout>

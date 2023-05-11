@@ -9,10 +9,6 @@
             @yield('title'){{ config('app.name', 'Laravel') }}
         </title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- icon -->
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
@@ -28,7 +24,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
         <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicons/android-icon-192x192.png') }}">
-        <link rel="manifest" crossorigin="use-credentials" href="{{ asset('favicons/manifest.json') }}">
+        <!-- <link rel="manifest" crossorigin="use-credentials" href="{{ asset('favicons/manifest.json') }}"> -->
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
         <!-- Scripts -->
@@ -37,7 +33,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="antialiased">
         <!-- <x-banner /> -->
         
         <div class="min-h-screen bg-white">

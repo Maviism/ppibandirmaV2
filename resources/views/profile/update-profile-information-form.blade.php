@@ -55,7 +55,7 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-input disabled id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
@@ -81,6 +81,20 @@
                 @endif
             @endif
         </div>
+
+        <!-- Phone number -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="Phone" value="{{ __('Phone Number') }}" />
+            <x-input id="phone_number" type="text" class="mt-1 block w-full" wire:model.defer="state.personal_information.phone_number" placeholder="905525591512" />
+            <x-input-error for="personal_information.phone_number" class="mt-2" />
+        </div>
+        
+        <!-- Phone number -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="Address" value="{{ __('Address') }}" />
+            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.personal_information.address_tr" placeholder="905525591512" />
+            <x-input-error for="personal_information.address_tr" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
@@ -92,4 +106,5 @@
             {{ __('Save') }}
         </x-button>
     </x-slot>
+
 </x-form-section>
