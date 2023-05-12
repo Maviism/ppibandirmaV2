@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Event\AbsensiController;
 use App\Http\Controllers\Organisation\KabinetController;
+use App\Http\Controllers\Organisation\DesignRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,10 @@ Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function(){
         Route::middleware('role:allAdmin')->group(function(){
-            Route::get('/', function(){ return view('admin/dashboard'); });
+            Route::get('/', [DashboardController::class, 'index']);
             Route::resource('/kabinet', KabinetController::class);
             Route::resource('/event', EventController::class);
+            Route::resource('/design', DesignRequestController::class);
             Route::resource('/absensi', AbsensiController::class)->except('store');
             Route::post('/absensi/user/{id}', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/scanner/{id}', [AbsensiController::class, 'showScanner'])->name('absen.scanner');

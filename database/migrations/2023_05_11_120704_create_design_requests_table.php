@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('design_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('department');
+            $table->string('title');
+            $table->text('content')->nullable();
+            $table->string('deadline');
+            $table->string('responsible');
+            $table->string('img_reference_url')->nullable();
+            $table->string('status')->default('pending'); //approved, pending, rejected
+            $table->string('assign_to')->nullable();
             $table->timestamps();
         });
     }

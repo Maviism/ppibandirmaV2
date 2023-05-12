@@ -359,7 +359,7 @@ return [
             'can'     => ['admin','akastrat'],
             'icon'    => 'fas fa-fw fa-palette',
             'icon_color' => 'danger',
-            'url' => '#'
+            'url' => 'admin/design'
         ],
         [
             'text' => 'Event Manager',
@@ -382,15 +382,15 @@ return [
                     'url'  => 'admin/kabinet',
                 ],
                 [
-                    'text' => 'Request Design',
-                    'url'  => '#',
+                    'text' => 'Design Request',
+                    'url'  => 'admin/design/create',
                 ],
                 [
                     'text' => 'Pengajuan Dana',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'Review Whatsapp',
+                    'text' => 'Whatsapp Broadcast',
                     'url'  => '#',
                 ],
             ],
