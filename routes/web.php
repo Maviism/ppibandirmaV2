@@ -41,6 +41,7 @@ Route::prefix('admin')
             Route::resource('/dataanggota', UserController::class);
             Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview']);
             Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
+            Route::get('/unapproveduser/{id}', [UserController::class, 'unapproveduser'])->name('deletedataanggota');
             Route::get('/dataalumni', [UserController::class, 'dataAlumni']);
             Route::get('/analytic', [UserController::class, 'analytic']);
         });   

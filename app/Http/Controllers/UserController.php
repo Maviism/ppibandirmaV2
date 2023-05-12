@@ -244,4 +244,11 @@ class UserController extends Controller
             'message' => "User '$name' has been deleted."
         ]);
     }
+
+    public function unapproveduser(string $id){
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('admin/dataanggota');
+    }
 }
