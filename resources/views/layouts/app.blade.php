@@ -34,7 +34,6 @@
         @livewireStyles
     </head>
     <body class="antialiased">
-        <!-- <x-banner /> -->
         
         <div class="min-h-screen bg-white">
             @include('partials.navigation-menu')
@@ -44,6 +43,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            @include('partials.footer')
         </div>
 
         @stack('modals')

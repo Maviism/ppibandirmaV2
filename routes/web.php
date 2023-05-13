@@ -28,21 +28,26 @@ Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function(){
         Route::middleware('role:allAdmin')->group(function(){
-            Route::get('/', [DashboardController::class, 'index']);
+            Route::get('/', [DashboardController::class, 'index'])->name('admin');
             Route::resource('/kabinet', KabinetController::class);
             Route::resource('/event', EventController::class);
-            Route::resource('/design', DesignRequestController::class);
             Route::resource('/absensi', AbsensiController::class)->except('store');
             Route::post('/absensi/user/{id}', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/scanner/{id}', [AbsensiController::class, 'showScanner'])->name('absen.scanner');
+            Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
+            Route::post('/design/create', [DesignRequestController::class, 'store'])->name('design.store');
         });
 
         Route::middleware('role:adminkeu')->group(function(){
             Route::resource('/dataanggota', UserController::class);
             Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview']);
             Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
-            Route::get('/unapproveduser/{id}', [UserController::class, 'unapproveduser'])->name('deletedataanggota');
+            Route::get('/unapproveuser/{id}', [UserController::class, 'unapproveuser'])->name('deletedataanggota');
             Route::get('/dataalumni', [UserController::class, 'dataAlumni']);
             Route::get('/analytic', [UserController::class, 'analytic']);
-        });   
+        });
+        
+        Route::middleware('role:medkraf')->group(function(){
+            Route::resource('/design', DesignRequestController::class)->except(['create', 'store']);
+        });
 });

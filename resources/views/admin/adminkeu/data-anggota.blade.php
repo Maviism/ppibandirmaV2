@@ -49,7 +49,7 @@
         @foreach($users as $user)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $user->name }}</td>
+                <td class="text-capitalize">{{ strtolower($user->name) }}</td>
                 <td>{{ $user->phone_number }}</td>
                 <td>{{ $user->arrival_year }}</td>
                 <td style="white-space: nowrap;">

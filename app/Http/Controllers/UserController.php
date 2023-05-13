@@ -22,6 +22,7 @@ class UserController extends Controller
                     ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
                     ->whereNotIn('e.status', ['lulus']) 
                     ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year')
+                    ->orderBy('users.name', 'ASC')
                     ->get();
         $users = $allUsers->where('is_approved', 1);
         $unapprovedUser = $allUsers->where('is_approved', 0);
@@ -59,10 +60,7 @@ class UserController extends Controller
                             ->whereNotIn('status', ['lulus']) 
                             ->groupBy('type_of_education')
                             ->get();
-        $educationStatus = DB::table('education')
-                            ->select('status', DB::raw('COUNT(*) as count'))
-                            ->groupBy('status')
-                            ->get();
+        $educationStatus = DB::table('education')->select('status', DB::raw('COUNT(*) as count'))->groupBy('status')->get();
                             
         $universityData = DB::table('education')
                             ->select('university', DB::raw('COUNT(*) as count'))
@@ -245,10 +243,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function unapproveduser(string $id){
+    public function unapproveuser(string $id){
         $user = User::findOrFail($id);
+        $name = $user->name;
         $user->delete();
 
-        return redirect('admin/dataanggota');
+        return redirect('admin/dataanggota')->with('success', 'kamu baru saja menghapus data '. $name);
     }
 }

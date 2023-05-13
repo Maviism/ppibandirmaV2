@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('personal_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('gender');
-            $table->string('birthday');
-            $table->string('phone_number');
+            $table->string('gender')->default('Laki-laki');
+            $table->string('birthday', 15)->change()->nullable();
+            $table->string('phone_number', 17)->change()->nullable();
             $table->string('type_of_residence')->nullable(); //(apart, asrama)
-            $table->string('province')->nullable();
-            $table->string('city')->nullable();
+            $table->string('province', 50)->nullable()->change();
+            $table->string('city', 50)->nullable()->change();
             $table->string('district')->nullable();
             $table->text('address_tr')->nullable();
             $table->text('address_id')->nullable();

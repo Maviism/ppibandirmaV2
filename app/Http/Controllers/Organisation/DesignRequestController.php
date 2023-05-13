@@ -13,7 +13,7 @@ class DesignRequestController extends Controller
      */
     public function index()
     {
-        $designs = DesignRequest::all();
+        $designs = DesignRequest::orderBy('created_at', 'desc')->get();
         return view('admin.medkraf.index', [
             'designs' => $designs
         ]);

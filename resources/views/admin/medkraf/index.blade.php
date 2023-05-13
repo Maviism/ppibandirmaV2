@@ -21,7 +21,15 @@
         <td>
           <a href="{{route('design.edit', $design->id)}}" class="btn btn-primary btn-sm">Detail</a>
         </td>
-        <td>{{$design->status}}</td>
+        <td>
+            @if($design->status == 'approved')
+            <button class="btn btn-sm btn-success">{{$design->status}}</button> 
+            @elseif($design->status == 'reject')
+            <button class="btn btn-sm btn-danger">rejected</button> 
+            @else
+            <button class="btn btn-sm btn-warning">{{$design->status}}</button> 
+            @endif
+        </td>
         <td>{{$design->deadline}}</td>
         <td>{{$design->title}}</td>
         <td>{{$design->department}}</td>

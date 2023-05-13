@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="p-2 rounded" style="background-color: #FFF;">
-        <form action="/admin/datareview/{{$user->id}}" method="POST">
+        <form action="/admin/datareview/{{$user->user_id}}" method="POST">
         @csrf
         @method('PUT')
         <input type="text" name="typeRequest" value="edit" hidden />
@@ -17,7 +17,7 @@
                 <p class="text-primary bold mt-1">Informasi Umum</p>
                 <x-adminlte-input name="iFullname" value="{{$user->name}}" label="Nama lengkap" placeholder="name lengkap"/>
                 <x-adminlte-input name="iMail" value="{{$user->email}}" type="email" label="Email"   placeholder="mail@example.com" enable-old-support/>
-                <x-adminlte-input name="iPhone" value="{{$user->phone_number}}" type="number" label="Nomor HP" placeholder="90552xxxxxx" enable-old-support>
+                <x-adminlte-input name="iPhone" value="{{$user->phone_number}}" type="text" label="Nomor HP" placeholder="90552xxxxxx" enable-old-support>
                     <x-slot name="prependSlot">
                         <div class="input-group-text bg-primary">
                             <i class="fas fa-plus text-default"></i>
@@ -77,9 +77,9 @@
                 <x-adminlte-select name="iEducationType" label="Jenjang pendidikan" enable-old-support>
                     <option value="SMP" @if($user->type_of_education == 'SMP') selected @endif>SMP</option>
                     <option value="SMA" @if($user->type_of_education == 'SMA') selected @endif>SMA</option>
-                    <option value="sarjana" @if($user->type_of_education == 'sarjana') selected @endif>Sarjana</option>
-                    <option value="magister" @if($user->type_of_education == 'magister') selected @endif>Magister</option>
-                    <option value="doktoral" @if($user->type_of_education == 'doktoral') selected @endif>Doktoral</option>
+                    <option value="Sarjana" @if($user->type_of_education == 'Sarjana') selected @endif>Sarjana</option>
+                    <option value="Magister" @if($user->type_of_education == 'Magister') selected @endif>Magister</option>
+                    <option value="Doktoral" @if($user->type_of_education == 'Doktoral') selected @endif>Doktoral</option>
                 </x-adminlte-select>
                 <x-adminlte-select name="iUniv" label="Universitas" enable-old-support>
                     <option value="Bandırma Onyedi Eylül Üniversitesi" @if($user->university == 'Bandırma Onyedi Eylül Üniversitesi') selected @endif>Bandırma Onyedi Eylül Üniversitesi</option>

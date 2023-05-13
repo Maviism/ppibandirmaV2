@@ -73,9 +73,9 @@
                 @if($university->university == $faculty->university)
                 <div class="progress-group">
                   <span class=" ">{{ $faculty->faculty }}</span>
-                  <span class="float-right"><b>{{ $faculty->count }}</b>/{{ $universityData->sum('count') }}</span>
+                  <span class="float-right"><b>{{ $faculty->count }}</b>/{{ $university->count }}</span>
                   <div class="progress">
-                    <div class="progress-bar bg-{{ $colors2[$loop->index % count($colors2)] }}" style="width: {{ ($faculty->count / $universityData->sum('count'))*100 }}%"></div>
+                    <div class="progress-bar bg-{{ $colors2[$loop->index % count($colors2)] }}" style="width: {{ ($faculty->count / $university->count)*100 }}%"></div>
                   </div>
                 </div>
                 @endif
@@ -159,7 +159,7 @@
     datasets: [
       {
         data: educationStatusData.map((item)=>item.count),
-        backgroundColor: ['#f56954', '#3c8dbc', '#00c0ef' ,  ]
+        backgroundColor: ['#f56954', 'blue', 'purple' ,  ]
       }
     ]
   }
@@ -262,7 +262,7 @@
       },
       scales: {
         y: {
-          suggestedMax: 70,
+          suggestedMax: 60,
           grid: {
             display: false
           }

@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="p-2 rounded" style="background-color: #FFF;">
-        <form action="/admin/datareview/{{$user->id}}" method="POST">
+        <form action="/admin/datareview/{{$user->user_id}}" method="POST">
         @csrf
         @method('PUT')
         <input type="text" name="typeRequest" value="review" hidden />
@@ -103,7 +103,7 @@
         </div>
         <div class="row justify-content-end mx-3 mb-3">
             <a href="{{route('dataanggota.index')}}" class="btn btn-primary"><i class="fas fa-lg fa-chevron mr-1"></i>Kembali</a>
-            <a href="{{route('deletedataanggota' , $user->id)}}" class="btn btn-danger mx-3"><i class="fas fa-lg fa-ban mr-1"></i>Hapus</a>
+            <a href="{{route('deletedataanggota' , $user->user_id)}}" class="btn btn-danger mx-3"><i class="fas fa-lg fa-ban mr-1"></i>Hapus</a>
             <x-adminlte-button class="" type="submit" label="Approved" theme="success" icon="fas fa-lg fa-check"/>
         </div>
         </form>

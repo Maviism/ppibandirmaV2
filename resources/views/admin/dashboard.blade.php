@@ -22,7 +22,7 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
                     <ul class="products-list product-list-in-card pl-2 pr-2">
-                        @foreach($designRequest as $design)
+                        @forelse($designRequest as $design)
                         <li class="item">
                             <div class="">
                                 <a href="javascript:void(0)" class="product-title">
@@ -33,7 +33,10 @@
 Deadline : {{$design->deadline}}</pre>
                             </div>
                         </li>
-                        @endforeach
+                        @empty
+                        <p class="item-center">There is no task</p>
+                        <a href="/admin/design/create">click here to create request</a>
+                        @endforelse
                     </ul>
                 </div>
                 <!-- /.card-body -->

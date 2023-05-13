@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+<a href="/admin/event" class="btn btn-info mb-1"><i class="fa fa-lg fa-chevron-left mr-1"></i>Kembali</a>
 <form method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data" >
 <div class="card p-2 ">
     <div class="row">
@@ -40,7 +41,10 @@
         </div>
     </div>
 </div>
-<button type="submit" class="btn btn-primary mb-4">Create Event</button>
+<div class="row px-1 justify-content-end">
+    <button type="submit" class="btn btn-primary mb-4">Create Event</button>
+
+</div>
 </form>
 
 @stop

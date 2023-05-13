@@ -36,7 +36,11 @@
             <div>
                 <label for="">Contoh Design</label>
                 @if(isset($design->img_reference_url))
-                <img id="previewImage" src="{{$design->img_reference_url}}" alt="Preview" style="max-width:200px; max-height:200px; display:none"/>
+                <div>
+                    <a href="/storage/images/designreferences/{{$design->img_reference_url}}" target="__blank">
+                        <img id="previewImage" src="/storage/images/designreferences/{{$design->img_reference_url}}" alt="Preview" style="max-width:200px; max-height:200px;"/>
+                    </a>
+                </div>
                 @else
                 <div class="mb-1"><em>Not Available</em></div>
                 @endif
