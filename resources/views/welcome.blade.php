@@ -3,5 +3,6 @@
     
     <x-hero/>
     <x-about-us/>
-    <x-event/>
+    <x-program-kerja/>
+    <x-kabinet/>
 </x-app-layout>

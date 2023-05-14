@@ -55,12 +55,11 @@ class KabinetController extends Controller
             $kabinet->logo_url = $filename;
             $kabinet->save();
         }
-        
+
+        $key = 0;
+        $member_key = 0;
         // Lakukan loop untuk menyimpan posisi dan anggota-anggotanya
         foreach($positions as $position){
-            // $posisi_model->name = $position['name'];
-            // $posisi_model->save();
-            // Loop untuk menyimpan anggota
             foreach($position['members'] as $member){
                 $kabinet_person = KabinetPerson::create([
                     'kabinet_id' => $kabinet->id,
@@ -69,7 +68,16 @@ class KabinetController extends Controller
                     'instagram' => $member['instagram']
                 ]);
 
+                if ($request->hasFile('position.'.$key.'.members.'.$member_key.'.profile_pict')) {
+                    $image = $request->file('position.'.$key.'.members.'.$member_key.'.profile_pict');
+                    $filename = time() . '.' . $image->getClientOriginalExtension();
+                    $image->storeAs('public/images/kabinet', $filename);
+                    $kabinet_person->profile_pict_url = $filename;
+                    $kabinet_person->save();
+                }
+                $member_key++;
             }
+            $key++;
         }
 
         return redirect('/admin/kabinet');

@@ -21,8 +21,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'personal_information.phone_number' => ['nullable', 'integer'],
-            'personal_information.address_tr' => ['nullable', 'string'],
+            'personal_information.phone_number' => ['required', 'integer'],
+            'personal_information.address_tr' => ['required', 'string'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -37,7 +37,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
             ])->save();
-
             $user->personalInformation->forceFill([
                 'phone_number' => $input['personal_information']['phone_number'],
                 'address_tr' => $input['personal_information']['address_tr'],

@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-transparent fixed top-0 left-0 right-0 backdrop-blur-sm border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -27,7 +27,7 @@
                 </div>
                 @auth
                 <!-- Settings Dropdown -->
-                <a class="border rounded-full px-4 py-2 text-white bg-blue-500 hover:bg-blue-600" href="/admin">admin</a>
+                <a class="rounded-full px-4 py-2 text-white bg-purple-600 hover:bg-purple-700" href="/admin">Admin</a>
                 <div class="ml-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -79,7 +79,7 @@
                     </x-dropdown>
                 </div>
                 @else
-                <div class="border rounded-full px-4 py-2">
+                <div class="border rounded-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2">
                     <a href="{{route('login')}}">Login</a>
                 </div>
                 @endauth
@@ -107,9 +107,9 @@
         @endguest
         @auth
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+            <a class="text-red-600 ml-10" href="{{ route('admin') }}" :active="request()->routeIs('admin')">
                 {{ __('Admin') }}
-            </x-responsive-nav-link>
+            </a>
         </div>
 
         <!-- Responsive Settings Options -->

@@ -89,10 +89,10 @@
             <x-input-error for="personal_information.phone_number" class="mt-2" />
         </div>
         
-        <!-- Phone number -->
+        <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="Address" value="{{ __('Address') }}" />
-            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.personal_information.address_tr" placeholder="905525591512" />
+            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.personal_information.address_tr" placeholder="enter your address here" />
             <x-input-error for="personal_information.address_tr" class="mt-2" />
         </div>
     </x-slot>

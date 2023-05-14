@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Organisation\DesignRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -12,9 +14,21 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $designRequest = DesignRequest::get();
+        $arrivalYearData = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
+                            ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
+                            ->select('e.arrival_year', 
+                                    DB::raw('SUM(CASE WHEN p.gender = "Laki-laki" THEN 1 ELSE 0 END) AS male'), 
+                                    DB::raw('SUM(CASE WHEN p.gender = "Perempuan" THEN 1 ELSE 0 END) AS female'))
+                            ->groupBy('e.arrival_year')
+                            ->get();
+        
+        $educationStatus = DB::table('education')->select('status', DB::raw('COUNT(*) as count'))->groupBy('status')->get();
+
+        $designRequest = DesignRequest::where('deadline', '>=', date('Y/m/d'))->get();
         return view('admin.dashboard',[
-            'designRequest' => $designRequest
+            'designRequest' => $designRequest,
+            'arrivalYearData' => $arrivalYearData,
+            'educationStatus' => $educationStatus
         ]);
     }
 
