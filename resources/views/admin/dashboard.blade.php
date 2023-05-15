@@ -12,7 +12,7 @@
         <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
-              <h3 class="card-title">Data anggota PPI Bandirma</h3>
+              <h3 class="card-title">Grafik anggota PPI Bandirma</h3>
           </div>
         </div>
         <div class="card-body">
@@ -77,7 +77,6 @@ Deadline : {{$design->deadline}}</pre>
                         </li>
                         @empty
                         <p class="item-center">There is no task</p>
-                        <a href="/admin/design/create">click here to create request</a>
                         @endforelse
                     </ul>
                 </div>

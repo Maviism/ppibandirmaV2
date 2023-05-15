@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
-              <h3 class="card-title">Data anggota PPI Bandirma</h3>
+              <h3 class="card-title">Grafik anggota PPI Bandirma</h3>
           </div>
         </div>
         <div class="card-body">
