@@ -58,7 +58,6 @@ class KabinetController extends Controller
 
         $key = 0;
         // Lakukan loop untuk menyimpan posisi dan anggota-anggotanya
-        dd($request);
         foreach($positions as $position){
             $member_key = 0;
             foreach($position['members'] as $member){
