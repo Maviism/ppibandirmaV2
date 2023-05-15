@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('gender')->default('Laki-laki');
-            $table->string('birthday', 15)->change()->nullable();
-            $table->string('phone_number', 17)->change()->nullable();
+            $table->string('birthday', 15)->nullable();
+            $table->string('phone_number', 17)->nullable();
             $table->string('type_of_residence')->nullable(); //(apart, asrama)
-            $table->string('province', 50)->nullable()->change();
-            $table->string('city', 50)->nullable()->change();
+            $table->string('province', 50)->nullable();
+            $table->string('city', 50)->nullable();
             $table->string('district')->nullable();
             $table->text('address_tr')->nullable();
             $table->text('address_id')->nullable();
