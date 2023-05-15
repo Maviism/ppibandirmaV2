@@ -57,20 +57,21 @@ class KabinetController extends Controller
         }
 
         $key = 0;
-        $member_key = 0;
         // Lakukan loop untuk menyimpan posisi dan anggota-anggotanya
+        dd($request);
         foreach($positions as $position){
+            $member_key = 0;
             foreach($position['members'] as $member){
                 $kabinet_person = KabinetPerson::create([
                     'kabinet_id' => $kabinet->id,
-                    'name' => $member['name'],
+                    'name' => $member['name'] . $member_key,
                     'position' => $position['name'],
                     'instagram' => $member['instagram']
                 ]);
 
                 if ($request->hasFile('position.'.$key.'.members.'.$member_key.'.profile_pict')) {
                     $image = $request->file('position.'.$key.'.members.'.$member_key.'.profile_pict');
-                    $filename = time() . '.' . $image->getClientOriginalExtension();
+                    $filename = $member['name'].time() . '.' . $image->getClientOriginalExtension();
                     $image->storeAs('public/images/kabinet', $filename);
                     $kabinet_person->profile_pict_url = $filename;
                     $kabinet_person->save();

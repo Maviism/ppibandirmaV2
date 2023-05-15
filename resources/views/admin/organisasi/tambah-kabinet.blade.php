@@ -85,7 +85,6 @@
 <script>
     $(document).ready(function(){
         var posisi_count = 1;
-        var member_id = 1;
         $(".add-posisi").click(function(){
             var posisi_field = `
             <hr class="bg-pink">
@@ -108,7 +107,6 @@
 
         $(document).on('click', '.add-member', function(){
             var posisi_id = $(this).data('posisi');
-            member_count++;
             var member_field = `
             <div class="input-group mb-1">
                 <div class="form-group">
@@ -121,6 +119,8 @@
                 </div>
             </div>
             `;
+            member_count++;
+
             $(this).parent().append(member_field);
         });
 

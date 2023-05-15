@@ -26,6 +26,7 @@ class StoreKabinetRequest extends FormRequest
             'iPeriode' => 'required',
             'iDescription' => 'nullable|string',
             'ifLogoImage' => 'nullable|image|max:5000',
+            'position.*.member.*.profile_pict' => 'nullable|image'
         ];
         return $rules;
     }
