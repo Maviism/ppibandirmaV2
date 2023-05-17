@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Event;
 
+use App\Models\User;
+use App\Models\Event\Event;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
-use App\Models\Event\Event;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {

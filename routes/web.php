@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Event\AbsensiController;
@@ -50,5 +51,11 @@ Route::prefix('admin')
         
         Route::middleware('role:medkraf')->group(function(){
             Route::resource('/design', DesignRequestController::class)->except(['create', 'store']);
+        });
+
+        Route::middleware('role:akastrat')->group(function(){
+            Route::resource('/pojokbaca', BookController::class);
+            Route::post('/pojokbaca/category/create', [BookController::class, 'storeCategory'])->name('category.store');
+            Route::delete('/pojokbaca/category/{id}', [BookController::class, 'destroyCategory'])->name('category.destroy');
         });
 });
