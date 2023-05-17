@@ -36,6 +36,12 @@ class UserSeeder extends Seeder
                 'role' => 'adminkeu',
             ],
             [
+                'name' => 'Media kreatif',
+                'email' => 'medkraf@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => 'medkraf',
+            ],
+            [
                 'name' => 'User biasa ',
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('password'),
@@ -67,6 +73,13 @@ class UserSeeder extends Seeder
             ],
             [
                 'user_id' => 4,
+                'phone_number' => '90552618198',
+                'address_tr' => 'Haci yusuf mahallesi',
+                'birthday' => '05/08',
+                'gender' => 'Laki-laki'
+            ],
+            [
+                'user_id' => 5,
                 'phone_number' => '905525918425',
                 'address_tr' => 'Levent mahallesi',
                 'birthday' => '02/10',
@@ -110,6 +123,15 @@ class UserSeeder extends Seeder
                 'arrival_year' => '2020',
                 'status' => 'Lulus',
                 'type_of_education' => 'Doktoral'
+            ],
+            [
+                'user_id' => 4,
+                'university' => 'Bandırma Onyedi Eylül Üniversitesi',
+                'faculty' => 'Muhendislik',
+                'department' => 'Elektro',
+                'arrival_year' => '2021',
+                'status' => 'Lulus',
+                'type_of_education' => 'Sarjana'
             ],
             
         ]);

@@ -19,20 +19,17 @@
             </x-slot>
         </x-adminlte-modal>
         </form>
-        <x-adminlte-button label="Add Category" data-toggle="modal" data-target="#categoryModal" class="bg-purple mb-2" icon="fas fa-plus"/>
+        <x-adminlte-button label="Add Category" data-toggle="modal" data-target="#categoryModal" class="bg-cyan mb-2" icon="fas fa-plus"/>
         <x-adminlte-datatable id="categoryList" :heads="[
                 ['label' => 'No', 'width' => 1],
                 'Category',
-                'Action'
+                ['label' => 'Action', 'width' => 1]
             ]" head-theme="dark" striped compressed>
             @foreach($categories as $category)
             <tr>
-                <td>1</td>
+                <td>{{ $loop->iteration}}</td>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <a href="" class="btn btn-xs btn-default text-primary shadow" title="Edit">
-                        <i class="fa fa-lg fa-fw fa-pen"></i>
-                    </a>
                     <button onclick="deleteCategory({{$category->id}})" class="btn btn-xs btn-default text-danger shadow" title="Delete">
                         <i class="fa fa-lg fa-fw fa-trash"></i>
                     </button></td>

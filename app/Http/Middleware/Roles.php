@@ -17,12 +17,14 @@ class Roles
     {
         if(!auth()->guest()){
             $userRole = $request->user()->role;
+
             if($userRole == $role ||$userRole == 'admin'){
                 return $next($request);
             }
             if($role == 'allAdmin' && $userRole != 'user'){
                 return $next($request);
             }
+            
             abort(403);
         }
 

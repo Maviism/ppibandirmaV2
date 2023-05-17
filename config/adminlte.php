@@ -356,7 +356,7 @@ return [
         ],
         [
             'text'    => 'Medkraf',
-            'can'     => ['admin','akastrat'],
+            'can'     => ['admin','medkraf'],
             'icon'    => 'fas fa-fw fa-palette',
             'icon_color' => 'danger',
             'url' => 'admin/design'

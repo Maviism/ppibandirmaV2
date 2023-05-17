@@ -56,6 +56,8 @@ Route::prefix('admin')
         Route::middleware('role:akastrat')->group(function(){
             Route::resource('/pojokbaca', BookController::class);
             Route::post('/pojokbaca/category/create', [BookController::class, 'storeCategory'])->name('category.store');
+            Route::post('/pojokbaca/ebook/create', [BookController::class, 'storeEbook'])->name('ebook.store');
             Route::delete('/pojokbaca/category/{id}', [BookController::class, 'destroyCategory'])->name('category.destroy');
+            Route::delete('/pojokbaca/ebook/{id}', [BookController::class, 'destroyEbook'])->name('ebook.destroy');
         });
 });

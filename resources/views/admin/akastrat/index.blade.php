@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Book Manager')
+@section('title', 'Pojok Baca Manager')
 
 @section('content_header')
     <h1>Book Manager</h1>
@@ -9,14 +9,15 @@
 @section('content')
 
 <div class="row">
-
-    <div class="col-md-6">
+    <div class="col-lg-5">
         @include('admin.akastrat.category')
     </div>
-    
-    <div class="col-6">Hello</div>
+    <div class="col-lg-7">
+        @include('admin.akastrat.ebook')
+    </div>
 </div>
 
+<div class="row">
 <div class="col-12">
     <div class="card">
         <div class="card-header">
@@ -78,7 +79,7 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="" class="btn btn-xs btn-default text-primary shadow" title="Edit">
+                        <a href="/admin/pojokbaca/{{$book->id}}/edit" class="btn btn-xs btn-default text-primary shadow" title="Edit">
                             <i class="fa fa-lg fa-fw fa-pen"></i>
                         </a>
                         <button onclick="deleteBook({{$book->id}})" class="btn btn-xs btn-default text-danger shadow" title="Delete">
@@ -93,6 +94,7 @@
     </div>
     <!-- /.card -->
 
+</div>
 </div>
 <!-- /.col -->
 
@@ -178,11 +180,53 @@
                             }
                         });
                     } else {
-                        Swal.fire('Error!', 'An error occurred while deleting the category.', 'error');
+                        Swal.fire('Error!', 'An error occurred while deleting the category...', 'error');
                     }
                 })
                 .catch(error => {
                     Swal.fire('Error!', 'An error occurred while deleting the category.', 'error');
+                });
+            }
+        });
+
+    }
+
+    function deleteEbook(ebookId){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this ebook!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete this ebook',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/admin/pojokbaca/ebook/${ebookId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), // Replace with your CSRF token
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status == 200) {
+                        Swal.fire({
+                            title: 'Deleted!', 
+                            text: data.message, 
+                            icon: 'success',
+                            timer: 5000,
+                            didClose: () => {
+                                location.reload(); // reload the page after the delay
+                            }
+                        });
+                    } else {
+                        Swal.fire('Error!', 'An error occurred while deleting the ebook...', 'error');
+                    }
+                })
+                .catch(error => {
+                    Swal.fire('Error!', 'An error occurred while deleting the ebook.', 'error');
                 });
             }
         });
