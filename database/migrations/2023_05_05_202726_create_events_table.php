@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('venue');
-            $table->string('datetime');
+            $table->dateTime('datetime');
             $table->string('image_url')->nullable();
             $table->string('type')->default('public');
             $table->text('description');

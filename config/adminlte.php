@@ -593,6 +593,16 @@ return [
                 ],
             ],
         ],
+        'Filterizr' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/filterizr/jquery.filterizr.min.js'
+                ]
+            ],
+        ],
     ],
 
     /*

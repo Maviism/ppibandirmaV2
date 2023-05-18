@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
                 'type_of_education' => 'Doktoral'
             ],
             [
-                'user_id' => 4,
+                'user_id' => 5,
                 'university' => 'Bandırma Onyedi Eylül Üniversitesi',
                 'faculty' => 'Muhendislik',
                 'department' => 'Elektro',

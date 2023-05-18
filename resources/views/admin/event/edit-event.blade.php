@@ -24,7 +24,7 @@
             </x-adminlte-textarea>
         </div>
         <div class="col-md-6">
-            <x-adminlte-input-date name="iDatetime" value="{{$event->datetime}}" :config="['format' => 'DD/MM/YYYY HH:mm']" placeholder="Choose a date... DD/MM/YYYY HH:mm"
+            <x-adminlte-input-date name="iDatetime" value="{{$event->datetime}}" :config="['format' => 'YYYY-MM-DD HH:mm']" placeholder="Choose a date... YYYY-MM-DD HH:mm"
                 label="Datetime" enable-old-support>
                 <x-slot name="prependSlot">
                     <x-adminlte-button theme="primary" icon="fas fa-calendar"
