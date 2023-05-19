@@ -1,0 +1,23 @@
+#qrcode-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+  
+  #qrcode {
+    width: 100rem;
+    height: 100rem;
+  }
+  
+  #scan-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+  }

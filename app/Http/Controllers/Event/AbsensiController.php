@@ -56,6 +56,7 @@ class AbsensiController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      */

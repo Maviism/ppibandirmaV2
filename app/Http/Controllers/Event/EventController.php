@@ -35,11 +35,25 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-
-        $file = $request->file('file');
-        $total_participant = User::leftJoin('education as e', 'users.id', '=','e.user_id')
+        $all_participant = User::leftJoin('education as e', 'users.id', '=','e.user_id')
+                            ->select('users.id', 'users.name', 'users.role','e.status')
                             ->whereNotIn('e.status', ['lulus'])
-                            ->get()->count();
+                            ->get();
+        $participants = 0;
+        switch( $request->iType){
+            case 'Public':
+                $participants = $all_participant;
+                break;
+            case 'Tömer':
+                $participants = $all_participant->where('status', 'Tömer');;
+                break;
+            case 'Internal':
+                $participants = $all_participant->whereNotIn('role', ['user']);
+                break;
+            case 'Private':
+                $participants = $all_participant;
+                break;
+        }
 
         $event = Event::create([
             'title' => $request->iTitle,
@@ -47,7 +61,7 @@ class EventController extends Controller
             'description' => $request-> iDescription,
             'datetime' => $request->iDatetime,
             'type' => $request->iType,
-            'total_participants' => $total_participant
+            'total_participants' => $participants->count()
         ]);
 
         if ($request->hasFile('ifImage')) {
@@ -87,6 +101,27 @@ class EventController extends Controller
     public function update(StoreEventRequest $request, string $id)
     {
         $event = Event::find($id);
+        $participants = $event->total_participants;
+        if($event->type != $request->iType){
+            $all_participant = User::leftJoin('education as e', 'users.id', '=','e.user_id')
+                    ->select('users.id', 'users.name', 'users.role','e.status')
+                    ->whereNotIn('e.status', ['lulus'])
+                    ->get();
+            switch( $request->iType){
+            case 'Public':
+            $participants = $all_participant->count();
+            break;
+            case 'Tömer':
+            $participants = $all_participant->where('status', 'Tömer')->count();;
+            break;
+            case 'Internal':
+            $participants = $all_participant->whereNotIn('role', ['user'])->count();
+            break;
+            case 'Private':
+            $participants = $all_participant->count();
+            break;
+            }
+        }
 
         $event->update([
             'title' => $request->iTitle,
@@ -94,6 +129,7 @@ class EventController extends Controller
             'description' => $request-> iDescription,
             'datetime' => $request->iDatetime,
             'type' => $request->iType,
+            'total_participants' => $participants
         ]);
 
         if ($request->hasFile('ifImage')) {

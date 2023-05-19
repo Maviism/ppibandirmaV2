@@ -32,10 +32,10 @@
                 </x-slot>
             </x-adminlte-input-date>
             <x-adminlte-select name="iType" label="Type" enable-old-support>
-                <option value="public">Public</option>
-                <option value="tömer">Tömer</option>
-                <option value="private">Private</option>
-                <option value="internal">Internal</option>
+                <option value="Public">Public</option>
+                <option value="Tömer">Tömer</option>
+                <option value="Private">Private</option>
+                <option value="Internal">Internal</option>
             </x-adminlte-select>
             <div>
                 <x-adminlte-input-file name="ifImage" id="imageInput" label="Upload image" placeholder="Choose a image..."/>
