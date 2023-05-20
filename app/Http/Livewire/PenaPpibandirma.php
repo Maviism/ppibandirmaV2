@@ -12,7 +12,7 @@ class PenaPpibandirma extends Component
 
     public function fetchRecentPosts()
     {
-        $this->posts = Cache::remember('recent_posts_wp', now()->addMinutes(20), function(){
+        $this->posts = Cache::remember('recent_posts_wp', now()->addMinutes(60), function(){
             $client = new Client();
             
             try {

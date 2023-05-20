@@ -1,10 +1,6 @@
 <x-app-layout>
-@section('title', 'Event | ')
-    <div class="bg-gray-900 h-60 p-10 flex justify-center items-center">
-        <div class="mt-10 text-2xl text-white">
-            Kabinet
-        </div>
-    </div>
+@section('title', 'Kabinet | ')
 
-    @livewire('kabinet-container')
+
+    @livewire('kabinet-container', ['periode' => request('periode')])
 </x-app-layout>

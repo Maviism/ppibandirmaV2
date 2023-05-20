@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-transparent fixed top-0 left-0 right-0 backdrop-blur-sm border-gray-100">
+<nav x-data="{ open: false }" class="bg-transparent fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -27,7 +27,7 @@
                 </div>
                 @auth
                 <!-- Settings Dropdown -->
-                <a class="rounded-full px-4 py-2 text-white bg-purple-600 hover:bg-purple-700" href="/admin">Admin</a>
+                <a class="rounded-full px-4 py-1 text-white bg-purple-600 hover:bg-purple-700" href="/admin">Admin</a>
                 <div class="ml-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">

@@ -8,6 +8,7 @@ use App\Models\Organisation\Kabinet;
 use App\Models\Organisation\KabinetPerson;
 use App\Http\Requests\StoreKabinetRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str; 
 
 class KabinetController extends Controller
 {
@@ -63,14 +64,14 @@ class KabinetController extends Controller
             foreach($position['members'] as $member){
                 $kabinet_person = KabinetPerson::create([
                     'kabinet_id' => $kabinet->id,
-                    'name' => $member['name'] . $member_key,
+                    'name' => $member['name'],
                     'position' => $position['name'],
                     'instagram' => $member['instagram']
                 ]);
 
                 if ($request->hasFile('position.'.$key.'.members.'.$member_key.'.profile_pict')) {
                     $image = $request->file('position.'.$key.'.members.'.$member_key.'.profile_pict');
-                    $filename = $member['name'].time() . '.' . $image->getClientOriginalExtension();
+                    $filename = $kabinet->id. Str::slug($member['name']) . '.' . $image->getClientOriginalExtension();
                     $image->storeAs('public/images/kabinet', $filename);
                     $kabinet_person->profile_pict_url = $filename;
                     $kabinet_person->save();
