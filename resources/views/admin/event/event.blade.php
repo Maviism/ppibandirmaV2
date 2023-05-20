@@ -14,6 +14,7 @@
 
     <div class="card card-primary">
         <div class="card-body">
+            <!-- This is what the search control looks like -->
         <div>
             <div class="btn-group w-100 mb-2">
                 <a class="btn bg-pink active" href="javascript:void(0)" data-filter="all"> All events </a>
@@ -22,8 +23,8 @@
                 <a class="btn btn-success" href="javascript:void(0)" data-filter="Internal"> Internal </a>
                 <a class="btn btn-danger" href="javascript:void(0)" data-filter="4"> Private </a>
             </div>
-            <div class="mb-5">
-                <div class="float-left">
+            <div class="px-0 px-lg-2 row justify-content-between">
+                <div>
                     <select class="custom-select" style="width: auto;" data-sortOrder>
                         <option value="index"> Sort by Year </option>
                         <option value="2022"> 2022 </option>
@@ -33,6 +34,9 @@
                         <a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascending </a>
                         <a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Descending </a>
                     </div>
+                </div>
+                <div class="float-right mb-2 mb-lg-0">
+                    <x-adminlte-input type="text" name="search" class="mt-2 mt-lg-0" placeholder="Search..." data-search />
                 </div>
             </div>
         </div>
@@ -79,7 +83,6 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

@@ -26,6 +26,9 @@ Route::get('/member', function () { return view('Pages.member');})->name('member
 Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
 Route::get('/kabinet', function () { return view('Pages.kabinet');})->name('kabinet');
 
+Route::get('/membercard/{id}', [UserController::class, 'generateMembershipCard']);
+
+
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function(){

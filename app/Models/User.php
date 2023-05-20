@@ -11,6 +11,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserInformation\Education;
 use App\Models\UserInformation\PersonalInformation;
+use Illuminate\Support\Facades\Crypt;
+
 
 class User extends Authenticatable
 {
@@ -69,5 +71,20 @@ class User extends Authenticatable
     
     public function personalInformation(){
         return $this->hasOne(PersonalInformation::class);
+    }
+    
+    public static function encryptUserId($id)
+    {
+        return Crypt::encrypt($id);
+    }
+
+    public static function decryptUserId($encryptedId)
+    {
+        try {
+            return Crypt::decrypt($encryptedId);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            // Handle decryption error, such as returning null or throwing an exception
+            return null;
+        }
     }
 }

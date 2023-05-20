@@ -107,7 +107,7 @@
         @endguest
         @auth
         <div class="pt-2 pb-3 space-y-1">
-            <a class="text-red-600 ml-10" href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+            <a class="text-red-600 ml-10" href="{{ route('admin') }}">
                 {{ __('Admin') }}
             </a>
         </div>

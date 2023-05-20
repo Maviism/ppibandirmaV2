@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -250,4 +254,46 @@ class UserController extends Controller
 
         return redirect('admin/dataanggota')->with('success', 'kamu baru saja menghapus data '. $name);
     }
+
+    public function generateMembershipCard($id)
+    {
+        // Load the membership card template image
+        $decrypted;
+        try {
+            $decrypted =  Crypt::decrypt($id);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            // Handle decryption error, such as returning null or throwing an exception
+            abort(404);
+        }
+        $user = User::findOrFail($decrypted);
+        
+        $templatePath = storage_path('app/card.png');
+        $image = Image::make($templatePath);
+
+        // Customize the membership card with the person's name
+        $image->text($user->name, 280, 720, function ($font) {
+            $font->file(public_path('/assets/fonts/Poppins-Regular.ttf')); 
+            $font->size(54);
+            $font->color('#E147A6');
+            $font->align('center');
+            $font->valign('middle');
+        });
+
+        $qrCodeFilePath = public_path('/assets/qrcode.png');
+        $qrCode = QrCode::format('png')
+                ->size(300)
+                ->generate($id, $qrCodeFilePath);
+        
+        $qrCodeImage = Image::make($qrCodeFilePath)->resize(350, 350);
+        $image->insert($qrCodeImage, 'center', -12, -34);    
+
+        // Encode the image to the desired format (e.g., JPEG) and retrieve the encoded data
+        $imageData = $image->encode('jpg')->getEncoded();
+
+        // Return the image as a response
+        return Response::make($imageData, 200, [
+            'Content-Type' => 'image/jpeg',
+        ]);
+    }
+
 }
