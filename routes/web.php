@@ -38,7 +38,6 @@ Route::prefix('admin')
             Route::resource('/event', EventController::class);
             Route::resource('/absensi', AbsensiController::class)->except('store');
             Route::post('/absensi/user/{id}', [AbsensiController::class, 'store'])->name('absensi.store');
-            Route::get('/scanner/{id}', [AbsensiController::class, 'showScanner'])->name('absen.scanner');
             Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
             Route::post('/design/create', [DesignRequestController::class, 'store'])->name('design.store');
         });

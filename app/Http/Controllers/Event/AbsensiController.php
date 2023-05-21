@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Event\Event;
 use App\Models\Event\Absensi;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 
 class AbsensiController extends Controller
 {
@@ -19,27 +20,28 @@ class AbsensiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $id)
     {
-        // dd($request->iEventId);        
-        $user = User::find($id);
+        $userId = $id;
+        if($request->iType == 'scanner'){
+            try {
+                $userId = Crypt::decrypt($id);
+            } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+                // Handle decryption error, such as returning null or throwing an exception
+                return response()->json(['message' => 'User not found.'], 404);
+            }
+        }
+
+        $user = User::find($userId);
         $eventId = $request->iEventId;
 
         if (!$user) {
             return response()->json(['message' => 'User not found.'], 404);
         }
         //check is user has absen
-        $absen = Absensi::where('event_id', $eventId)->where('user_id', $id)->first();
+        $absen = Absensi::where('event_id', $eventId)->where('user_id', $userId)->first();
         if($absen){
             return response()->json(['message' => 'User sudah registrasi :).'], 404);
         }
@@ -56,7 +58,6 @@ class AbsensiController extends Controller
         }
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -70,30 +71,6 @@ class AbsensiController extends Controller
             'users' => $users,
             'registeredUsers' => $registeredUser
         ]);
-    }
-
-    public function showScanner(string $id)
-    {
-        $event = Event::find($id);
-        return view('admin.event.scanner', [
-            'event' => $event
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

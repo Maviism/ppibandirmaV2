@@ -116,10 +116,15 @@
         });
     });
 
-
+var lastScannedText = null;
 function onScanSuccess(decodedText, decodedResult) {
     // Handle on success condition with the decoded text or result.
+    if (decodedText === lastScannedText) {
+        console.log('Duplicate scan, skipping request');
+        return;
+    }
     console.log(`Scan result: ${decodedText}`, decodedResult);
+
     const userId = decodedText; // Replace with the actual user ID
     const eventId = {{ $event->id }}; // Use the decoded text as the event ID
 
@@ -131,7 +136,8 @@ function onScanSuccess(decodedText, decodedResult) {
                 'X-CSRF-TOKEN': token
             },
             data: {
-                iEventId: eventId // include the value in the data parameter
+                iEventId: eventId, // include the value in the data parameter
+                iType : 'scanner'
             },
             success: function(response) {
                 Swal.fire({
@@ -141,23 +147,21 @@ function onScanSuccess(decodedText, decodedResult) {
                     timer: 4000, // Timer set to 2 seconds (2000 milliseconds)
                     timerProgressBar: true,
                 })
+
             },
             error: function(response) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Absen Gagal',
                     text: response.responseJSON.message,
-                    timer: 4000, // Timer set to 2 seconds (2000 milliseconds)
+                    timer: 8000, // Timer set to 2 seconds (2000 milliseconds)
                     timerProgressBar: true,
                 });
             }
     });
 
-    // Add a 1-second delay before executing the next line of code
-    setTimeout(function() {
-        // Code to be executed after the delay
-        console.log("Delay completed");
-    }, 1000);
+    lastScannedText = decodedText;
+
 }
 
 let html5QrCode;

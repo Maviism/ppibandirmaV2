@@ -17,7 +17,7 @@
             <!-- This is what the search control looks like -->
         <div>
             <div class="btn-group w-100 mb-2">
-                <a class="btn bg-pink active" href="javascript:void(0)" data-filter="all"> All events </a>
+                <a class="btn bg-pink active" href="javascript:void(0)" data-filter="all"> All </a>
                 <a class="btn btn-primary" href="javascript:void(0)" data-filter="Public"> Public </a>
                 <a class="btn btn-info" href="javascript:void(0)" data-filter="Tömer"> Tömer </a>
                 <a class="btn btn-success" href="javascript:void(0)" data-filter="Internal"> Internal </a>

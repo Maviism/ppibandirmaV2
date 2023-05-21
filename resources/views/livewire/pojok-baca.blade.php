@@ -9,7 +9,7 @@
     <div class="flex flex-col lg:flex-row w-full justify-end">
         <div class="flex flex-col lg:w-1/2 border-b lg:border-r lg:border-b-0 mb-2">
             <div class="border-b">
-                Copywriting Pojok baca Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione culpa unde voluptas enim eaque. Eius nisi nobis minima voluptatibus optio.
+            Sarana membaca yang disediakan untuk para anggota dalam bentuk perpustakaan sederhana yang mengoleksi berbagai macam bahan bacaan secara fisik maupun digital
             </div>
             <!-- <div class="">
                 <div class="text-lg font-semibold">E-book</div>
