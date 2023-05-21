@@ -4,7 +4,7 @@ namespace App\Models\Organisation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Organisation\kabinetPerson;
+use App\Models\Organisation\KabinetPerson;
 
 class Kabinet extends Model
 {
@@ -18,6 +18,6 @@ class Kabinet extends Model
     ];
 
     public function kabinetPerson(){
-        return $this->hasMany(kabinetPerson::class);
+        return $this->hasMany(KabinetPerson::class);
     }
 }
