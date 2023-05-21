@@ -37,7 +37,7 @@ Route::prefix('admin')
             Route::resource('/kabinet', KabinetController::class);
             Route::resource('/event', EventController::class);
             Route::resource('/absensi', AbsensiController::class)->except('store');
-            Route::post('/absensi/user/{id}', [AbsensiController::class, 'store'])->name('absensi.store');
+            Route::post('/absensi/user', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
             Route::post('/design/create', [DesignRequestController::class, 'store'])->name('design.store');
         });

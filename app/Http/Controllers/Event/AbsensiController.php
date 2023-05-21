@@ -22,28 +22,17 @@ class AbsensiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $userId = $id;
-        if($request->iType == 'scanner'){
-            try {
-                $userId = Crypt::decrypt($id);
-            } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
-                // Handle decryption error, such as returning null or throwing an exception
-                return response()->json(['message' => 'User not found.'], 404);
-            }
-        }
-
-        $user = User::find($userId);
+        $user = User::where('email', $request->iEmail)->first();
         $eventId = $request->iEventId;
-
         if (!$user) {
             return response()->json(['message' => 'User not found.'], 404);
         }
         //check is user has absen
-        $absen = Absensi::where('event_id', $eventId)->where('user_id', $userId)->first();
+        $absen = Absensi::where('event_id', $eventId)->where('user_id', $user->id)->first();
         if($absen){
-            return response()->json(['message' => 'User sudah registrasi :).'], 404);
+            return response()->json(['message' => 'Kamu sudah registrasi']);
         }
 
         $absensi  = Absensi::create([

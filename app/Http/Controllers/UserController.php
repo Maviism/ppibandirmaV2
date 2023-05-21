@@ -281,8 +281,12 @@ class UserController extends Controller
 
         $qrCodeFilePath = public_path('/assets/qrcode.png');
         $qrCode = QrCode::format('png')
+                ->style('round')
+                ->margin(1)
+                ->errorCorrection('Q')
+                ->eye('circle')
                 ->size(300)
-                ->generate($id, $qrCodeFilePath);
+                ->generate($user->email, $qrCodeFilePath);
         
         $qrCodeImage = Image::make($qrCodeFilePath)->resize(350, 350);
         $image->insert($qrCodeImage, 'center', -12, -34);    

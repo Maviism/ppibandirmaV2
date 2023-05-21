@@ -23,9 +23,10 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->role }}</td>
                     <td style="white-space: nowrap;">
-                        <form class="form-hadir" action="{{ route('absensi.store', $user->id) }}" method="POST">
+                        <form class="form-hadir" action="{{ route('absensi.store') }}" method="POST">
                             @csrf
                             <input type="text" name="iEventId" value="{{$event->id}}" hidden>
+                            <input type="email" name="iEmail" value="{{$user->email}}" hidden>
                             <button type="submit" class="btn btn-xs btn-success shadow">
                                 Hadir
                                 <i class="fa fa-lg fa-fw fa-check-circle"></i>
@@ -83,37 +84,14 @@
     $('.form-hadir').submit(function(event) {
         event.preventDefault();
         var form = $(this);
-        var url = form.attr('action');
-        var method = form.attr('method');
-        var token = $('meta[name="csrf-token"]').attr('content');
         var iEventId = $('input[name="iEventId"]').val();
+        var iEmail = form.find('input[name="iEmail"]').val();
 
-        $.ajax({
-            url: url,
-            method: method,
-            headers: {
-                'X-CSRF-TOKEN': token
-            },
-            data: {
-                iEventId: iEventId // include the value in the data parameter
-            },
-            success: function(response) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Absen Berhasil',
-                    text: response.message,
-                    // timer: 2000
-                })
-            },
-            error: function(response) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Absen Gagal',
-                    text: response.responseJSON.message,
-                    // timer: 2000
-                });
-            }
-        });
+        const data = {
+            iEventId,
+            iEmail
+        }
+        submitAjaxForm(data);
     });
 
 var lastScannedText = null;
@@ -123,22 +101,28 @@ function onScanSuccess(decodedText, decodedResult) {
         console.log('Duplicate scan, skipping request');
         return;
     }
-    console.log(`Scan result: ${decodedText}`, decodedResult);
+    const iEmail = decodedText; // Replace with the actual user ID
+    const iEventId = {{ $event->id }}; // Use the decoded text as the event ID
 
-    const userId = decodedText; // Replace with the actual user ID
-    const eventId = {{ $event->id }}; // Use the decoded text as the event ID
+    const data =  {
+                    iEventId, // include the value in the data parameter
+                    iType : 'scanner',
+                    iEmail
+                }
 
+    submitAjaxForm(data);
+    lastScannedText = decodedText;
+}
+
+function submitAjaxForm(data) {
     var token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
-            url: `/admin/absensi/user/${userId}`,
+            url: `/admin/absensi/user`,
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': token
             },
-            data: {
-                iEventId: eventId, // include the value in the data parameter
-                iType : 'scanner'
-            },
+            data: data,
             success: function(response) {
                 Swal.fire({
                     icon: 'success',
@@ -159,9 +143,6 @@ function onScanSuccess(decodedText, decodedResult) {
                 });
             }
     });
-
-    lastScannedText = decodedText;
-
 }
 
 let html5QrCode;
