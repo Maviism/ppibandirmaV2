@@ -4,6 +4,7 @@ namespace App\Models\Organisation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Organisation\imageReference;
 
 class DesignRequest extends Model
 {
@@ -19,4 +20,9 @@ class DesignRequest extends Model
         'status',
         'assign_to'
     ];
+
+    public function imageReferences()
+    {
+        return $this->hasMany(ImageReference::class);
+    }
 }

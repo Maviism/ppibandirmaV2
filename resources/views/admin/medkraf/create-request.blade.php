@@ -53,7 +53,7 @@
             </x-adminlte-input-date>
 
             <div>
-                <x-adminlte-input-file name="ifImageReference" id="imageInput" label="Contoh Design" placeholder="Choose a image...">
+                <x-adminlte-input-file name="ifImageReference[]" id="imageInput" label="Contoh Design" placeholder="Choose a image..." multiple>
                     <x-slot name="bottomSlot">
                         <span class="text-sm text-gray">
                             Optional | max: 5mb

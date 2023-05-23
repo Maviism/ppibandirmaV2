@@ -42,13 +42,16 @@ class DesignRequestController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'iDepartment' => 'required',
             'iTitle' => 'required|string',
             'iContent' => 'nullable|string',
             'idDeadline' => 'required|string',
-            'ifImageReference' => 'nullable|image|max:5124'
+            'ifImageReference' => 'nullable|max:5124',
+            'ifImageReference.*' => 'nullable|max:5124'
         ]);
+
 
         $design = DesignRequest::create([
             'department' => $request->iDepartment,
@@ -59,32 +62,21 @@ class DesignRequestController extends Controller
         ]);
 
         if ($request->hasFile('ifImageReference')) {
-            $image = $request->file('ifImageReference');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/images/designreferences', $filename);
-            $design->img_reference_url = $filename;
-            $design->save();
+            $images = $request->file('ifImageReference');
+            if(!is_null($images)){
+                foreach($images as $imageUrl){
+                    $filename = uniqid() . '.' . $imageUrl->getClientOriginalExtension();
+                    $imageUrl->storeAs('public/images/designreferences', $filename);
+                    $design->imageReferences()->create([
+                        'img_reference_url' => $filename
+                    ]);
+                }
+            }
         }
 
         $url = config('app.url') . '/admin/design/' . $design->id . '/edit';
         $message = "Ada request design lagi nih dari divisi " . $request->iDepartment . ".\nCek disini ya: " . $url;
-        try {
-            $this->whatsappService->sendMessage('905525911215', 'false' , $message);
-        } catch (\Exception $e) {
-            // Send email notification
-            $recipientEmail = 'muadzihharul@gmail.com';
-            $subject = '[PPI Bandirma] WA Error sending message';
-            $content = 'There was an error sending a message: ' . $e->getMessage();
-
-            Mail::raw($content, function ($message) use ($recipientEmail, $subject) {
-                $message->to($recipientEmail)
-                        ->subject($subject);
-            });
-            // Handle the exception as needed
-            // Send email notification
-
-            // Return an error response or handle the error gracefully
-        }
+        $this->whatsappService->sendMessage('905525911215', 'false' , $message);
 
         return redirect('/admin');
     }

@@ -5,7 +5,7 @@
     </div>
     <div class="flex flex-wrap justify-center mb-12">
         @foreach($kabinet->kabinetPerson as $person)
-        <div class="relative bg-cover bg-center bg-no-repeat w-48 h-72" style="background-image: url(http://bandirma.test/storage/images/kabinet/{{$person->profile_pict_url}})">
+        <div class="relative bg-cover bg-center bg-no-repeat w-48 h-72" style="background-image: url({{ env('APP_URL') }}/storage/images/kabinet/{{$person->profile_pict_url}})">
             <div class="absolute bottom-0 left-0 w-full h-18 flex flex-col text-center bg-white/75">
                 <div class="text-gray-900 text-md font-bold">{{$person->name}}</div>
                 <div class="text-gray-700 text-sm">{{$person->position}}</div>
