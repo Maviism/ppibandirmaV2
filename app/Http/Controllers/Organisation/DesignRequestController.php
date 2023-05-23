@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Organisation;
 use App\Http\Controllers\Controller;
 use App\Models\Organisation\DesignRequest;
 use Illuminate\Http\Request;
+use App\Services\WhatsappService;
+use Illuminate\Support\Facades\Mail;
+
 
 class DesignRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    protected $whatsappService;
+
+    public function __construct(WhatsappService $whatsappService)
+    {
+        $this->whatsappService = $whatsappService;
+    }
     public function index()
     {
         $designs = DesignRequest::orderBy('created_at', 'desc')->get();
@@ -56,8 +66,27 @@ class DesignRequestController extends Controller
             $design->save();
         }
 
-        return redirect('/admin');
+        $url = config('app.url') . '/admin/design/' . $design->id . '/edit';
+        $message = "Ada request design lagi nih dari divisi " . $request->iDepartment . ".\nCek disini ya: " . $url;
+        try {
+            $this->whatsappService->sendMessage('905525911215', 'false' , $message);
+        } catch (\Exception $e) {
+            // Send email notification
+            $recipientEmail = 'muadzihharul@gmail.com';
+            $subject = '[PPI Bandirma] WA Error sending message';
+            $content = 'There was an error sending a message: ' . $e->getMessage();
 
+            Mail::raw($content, function ($message) use ($recipientEmail, $subject) {
+                $message->to($recipientEmail)
+                        ->subject($subject);
+            });
+            // Handle the exception as needed
+            // Send email notification
+
+            // Return an error response or handle the error gracefully
+        }
+
+        return redirect('/admin');
     }
 
     /**
@@ -101,4 +130,11 @@ class DesignRequestController extends Controller
     {
         //
     }
+
+    public function sendMessage()
+    {
+        // dd('hello');
+        
+    }
+
 }
