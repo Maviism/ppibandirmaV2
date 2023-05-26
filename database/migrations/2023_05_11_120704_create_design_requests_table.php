@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->string('deadline');
             $table->string('responsible');
-            $table->string('img_reference_url')->nullable();
             $table->string('status')->default('pending'); //approved, pending, rejected
             $table->string('assign_to')->nullable();
             $table->timestamps();

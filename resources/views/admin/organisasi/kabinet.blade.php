@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+@can(['admin'])
 <div class="card">
   <div class="card-body">
     <a href="{{ route('kabinet.create') }}" class="btn btn-primary text-default mx-1 shadow" title="Edit">
@@ -14,6 +15,7 @@
     </a>
   </div>
 </div>
+@endcan
 <div class="card card-solid">
   <div class="card-body pb-0">
     <div class="row">

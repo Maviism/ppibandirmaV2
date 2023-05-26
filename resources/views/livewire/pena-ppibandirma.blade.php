@@ -25,7 +25,7 @@
         </div>
         <div class="lg:w-1/3 sm:pt-2 sm:mt-2 lg:pl-2 sm:border-t lg:border-t-0 border-indigo-500/100">
             Ingin belajar nulis juga? Yuk gabung bareng kita di Pena PPI Bandirma
-            <button class="py-1 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white">Gabung</button>
+            <a target="__blank" href="https://bit.ly/3HZ7orp" class="py-1 px-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white">Gabung</a>
         </div>
     </div>
 </div>

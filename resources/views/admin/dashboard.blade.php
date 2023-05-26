@@ -58,8 +58,7 @@
                     <ul class="products-list product-list-in-card pl-2 pr-2">
                         @forelse($designRequest as $design)
                         <li class="item">
-                            <div class="">
-                                <a href="javascript:void(0)" class="product-title">
+                                <a href="#" class="product-title">
                                 {{$design->title}} 
                                 @if($design->status == 'reject')
                                 <span class="badge badge-danger float-right">{{$design->status}}</span>
@@ -73,12 +72,15 @@
                                 <div>{{$design->department}}</div>
                                 <pre>PJ       : {{$design->responsible}}
 Deadline : {{$design->deadline}}</pre>
-                            </div>
+                            @can('medkraf')
+                            <a href="/admin/design/{{$design->id}}/edit" class="text-danger text-sm mt-n2">review</a>
+                            @endcan
                         </li>
                         @empty
                         <p class="item-center mt-2">There is no task</p>
                         @endforelse
                     </ul>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer text-center">
@@ -87,7 +89,7 @@ Deadline : {{$design->deadline}}</pre>
             </div>
             <div class="card">
               <div class="card-header bg-teal">
-                <h3 class="card-title">Bursa transfer member in last 3 month</h3>
+                <h3 class="card-title">member info in last 3 month</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -100,7 +102,7 @@ Deadline : {{$design->deadline}}</pre>
                 <ul class="nav nav-pills flex-column">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      United States of America
+                      Fulan
                       <span class="float-right text-danger">
                         <i class="fas fa-arrow-down text-sm"></i>
                         Out</span>
@@ -108,7 +110,7 @@ Deadline : {{$design->deadline}}</pre>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      India
+                      Fulanah
                       <span class="float-right text-success">
                         <i class="fas fa-arrow-up text-sm"></i> In
                       </span>
@@ -116,7 +118,7 @@ Deadline : {{$design->deadline}}</pre>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      China
+                      Fulani
                       <span class="float-right text-success">
                         <i class="fas fa-arrow-up text-sm"></i> In
                       </span>

@@ -32,6 +32,22 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        <style>
+        .fade-in {
+            opacity: 0;
+            animation: fadeInAnimation 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+            opacity: 0;
+            }
+            to {
+            opacity: 1;
+            }
+        }
+        </style>
     </head>
     <body class="antialiased">
         
@@ -50,5 +66,13 @@
         @stack('modals')
 
         @livewireScripts
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var fadeIns = document.querySelectorAll('.fade-in');
+            for (var i = 0; i < fadeIns.length; i++) {
+            fadeIns[i].classList.add('fade-in-show');
+            }
+        });
+        </script>
     </body>
 </html>

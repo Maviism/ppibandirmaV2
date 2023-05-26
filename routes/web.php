@@ -40,6 +40,8 @@ Route::prefix('admin')
             Route::post('/absensi/user', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
             Route::post('/design/create', [DesignRequestController::class, 'store'])->name('design.store');
+            Route::get('/analytic', [UserController::class, 'analytic']);
+
         });
 
         Route::middleware('role:adminkeu')->group(function(){
@@ -48,7 +50,6 @@ Route::prefix('admin')
             Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
             Route::get('/unapproveuser/{id}', [UserController::class, 'unapproveuser'])->name('deletedataanggota');
             Route::get('/dataalumni', [UserController::class, 'dataAlumni']);
-            Route::get('/analytic', [UserController::class, 'analytic']);
         });
         
         Route::middleware('role:medkraf')->group(function(){

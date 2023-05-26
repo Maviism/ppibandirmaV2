@@ -4,7 +4,7 @@
         <div class="flex flex-col my-10 md:my-0 items-center">
             <div>ON GOING</div>
             <div class="text-2xl">KABINET BANGGA BARENG</div>
-            <img class="w-36 my-2" src="/assets/Logo.png" alt="">
+            <img class="w-36 my-2" src="/assets/banggabareng.png" alt="">
             <a href="/kabinet?periode=2023-2024" class="text-pink-500 hover:text-pink-600">See structure</a>
         </div>
         <div class="flex pr-0 md:pr-14">

@@ -35,12 +35,14 @@
 
             <div>
                 <label for="">Contoh Design</label>
-                @if(isset($design->img_reference_url))
+                @if($design->imageReferences != null)
+                @foreach($design->imageReferences as $references) 
                 <div>
-                    <a href="/storage/images/designreferences/{{$design->img_reference_url}}" target="__blank">
-                        <img id="previewImage" src="/storage/images/designreferences/{{$design->img_reference_url}}" alt="Preview" style="max-width:200px; max-height:200px;"/>
+                    <a href="/storage/images/designreferences/{{$references->img_reference_url}}" target="__blank">
+                        <img id="previewImage" src="/storage/images/designreferences/{{$references->img_reference_url}}" alt="Preview" style="max-width:200px; max-height:200px;"/>
                     </a>
                 </div>
+                @endforeach
                 @else
                 <div class="mb-1"><em>Not Available</em></div>
                 @endif
@@ -56,19 +58,19 @@
                 <div class="row container">
                     <div class="form-check mr-3">
                         <input class="form-check-input" type="radio" name="iStatus" id="flexRadioDefault1" value="approved" @if($design->status== 'approved') checked @endif>
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <label class="form-check-label text-success" for="flexRadioDefault1">
                             Approved
                         </label>
                     </div>
                     <div class="form-check mr-3">
                         <input class="form-check-input" type="radio" name="iStatus" id="flexRadioDefault2" value="pending" @if($design->status== 'pending') checked @endif>
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label text-warning" for="flexRadioDefault2">
                             Pending
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="iStatus" id="flexRadioDefault2" value="reject" @if($design->status== 'reject') checked @endif>
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label text-danger" for="flexRadioDefault2">
                             Reject
                         </label>
                     </div>

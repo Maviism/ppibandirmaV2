@@ -259,7 +259,7 @@ return [
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'user/profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -317,7 +317,6 @@ return [
             'icon'        => 'fas fa-fw fa-home',
         ],
         ['header' => 'Menus'],
-
         [
             'text'    => 'Adminkeu',
             'can'     => ['admin','adminkeu'],
@@ -333,11 +332,6 @@ return [
                     'text' => 'Data alumni',
                     'url'  => '/admin/dataalumni',
                     'icon' => 'fas fa-fw fa-graduation-cap',
-                ],
-                [
-                    'text' => 'Analytic',
-                    'url'  => '/admin/analytic',
-                    'icon' => 'fas fa-fw fa-chart-area',
                 ],
             ],
         ],
@@ -378,20 +372,16 @@ return [
             'icon_color' => 'pink',
             'submenu' => [
                 [
+                    'text' => 'Member Analytic',
+                    'url'  => '/admin/analytic',
+                ],
+                [
                     'text' => 'Kabinet',
                     'url'  => 'admin/kabinet',
                 ],
                 [
                     'text' => 'Design Request',
                     'url'  => 'admin/design/create',
-                ],
-                [
-                    'text' => 'Pengajuan Dana',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Whatsapp Broadcast',
-                    'url'  => '#',
                 ],
             ],
         ],

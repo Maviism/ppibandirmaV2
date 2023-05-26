@@ -98,7 +98,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-blue-100">
         @guest
         <x-responsive-nav-link class="bg-blue-500 text-white" href="{{ route('login') }}" >
                 {{ __('Login') }}

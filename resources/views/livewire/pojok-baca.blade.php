@@ -19,14 +19,15 @@
             </div> -->
         </div>
         <div class="lg:w-2/3">
+            @if(!empty($books))
             <div class="flex flex-wrap space-x-4 justify-center items-center">
                 @foreach($books as $book)
                 <div class="bg-cover mb-2 w-40 ">
-                    <img class="" src="/storage/images/books/{{$book->thumbnail_url}}" alt="">
+                    <img class="" src="/storage/images/books/{{$book->thumbnail_url}}" alt="{{$book->title}}" loading="lazy">
                 </div>
                 @endforeach
             </div>
-            <a class="ml-2 lg:ml-3">Lihat lebih banyak..</a>
+            @endif
         </div>
     </div>
 </div>
