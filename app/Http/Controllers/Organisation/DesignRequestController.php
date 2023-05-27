@@ -76,7 +76,9 @@ class DesignRequestController extends Controller
 
         $url = config('app.url') . '/admin/design/' . $design->id . '/edit';
         $message = "Ada request design lagi nih dari divisi " . $request->iDepartment . ".\nCek disini ya: " . $url;
-        $this->whatsappService->sendMessage('905525911215', 'false' , $message);
+        $recepient = config('whatsapp.recipient.medkraf.group_name');
+        $is_group = config('whatsapp.recipient.medkraf.is_group');
+        $this->whatsappService->sendMessage($recepient, $is_group , $message);
 
         return redirect('/admin');
     }
