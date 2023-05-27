@@ -4,7 +4,7 @@ namespace App\Models\Organisation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Organisation\imageReference;
+use App\Models\Organisation\ImageReference;
 
 class DesignRequest extends Model
 {
