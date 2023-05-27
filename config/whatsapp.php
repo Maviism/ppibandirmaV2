@@ -9,7 +9,7 @@ return [
     'recipient' => [
         'medkraf' => [
             'group_name' => env('MEDKRAF_WA', 'Tes bot'),
-            'is_group' => 'true'
+            'is_group' => env('IS_GROUP', 'true')
         ]
     ]
 ];
