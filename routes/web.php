@@ -21,9 +21,9 @@ use App\Http\Controllers\Organisation\DesignRequestController;
 */
 
 Route::get('/', function () { return view('welcome');})->name('index');
-// Route::get('/event', function () { return view('Pages.event');})->name('event');
-// Route::get('/member', function () { return view('Pages.member');})->name('member');
-// Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
+Route::get('/event', function () { return view('Pages.event');})->name('event');
+Route::get('/member', function () { return view('Pages.member');})->name('member');
+Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
 Route::get('/kabinet', function () { return view('Pages.kabinet');})->name('kabinet');
 
 Route::get('/membercard/{id}', [UserController::class, 'generateMembershipCard']);
