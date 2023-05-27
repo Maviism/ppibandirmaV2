@@ -10,7 +10,7 @@
         @if($post)
         <div class="sm:w-1/2 lg:w-1/3 pr-1">
             <img class="w-full" src="{{ $post['_embedded']['wp:featuredmedia'][0]['source_url']}}" alt="">
-            <a href="{{$post['link']}}" class="w-72 mt-2 text-lg">{{ $post['title']['rendered']}}</a>
+            <a href="{{$post['link']}}" class="w-72 mt-2 text-lg">{!! $post['title']['rendered'] !!}</a>
         </div>
         @endif
         <div class="border-y sm:border-x sm:border-y-0 sm:px-2 lg:border-x lg:border-y-0 border-indigo-500/100 my-2 w-full sm:w-1/2 sm:my-0 lg:w-1/3">
