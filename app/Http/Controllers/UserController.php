@@ -25,7 +25,7 @@ class UserController extends Controller
         $allUsers = User::leftJoin('personal_information as p', 'users.id', '=', 'p.user_id')
                     ->leftJoin('education as e', 'users.id', '=', 'e.user_id')
                     ->whereNotIn('e.status', ['lulus']) 
-                    ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year')
+                    ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year', 'e.university', 'e.faculty', 'e.department', 'e.status', 'e.type_of_education')
                     ->orderBy('users.name', 'ASC')
                     ->get();
         $users = $allUsers->where('is_approved', 1);

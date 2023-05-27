@@ -362,7 +362,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Events',
-                    'url' => 'admin/event',
+                    'url' => 'admin/event?year=2023',
                 ],
             ]
         ],
@@ -443,7 +443,7 @@ return [
             ],
         ],
         'DatatablesPlugins' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',

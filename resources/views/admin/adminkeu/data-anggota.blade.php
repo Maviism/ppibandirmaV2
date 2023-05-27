@@ -38,11 +38,15 @@
             </x-adminlte-datatable>
         </x-adminlte-modal>
     </div>
-    {{-- Minimal example / fill data using the component slot --}}
+<div class="pb-4">
     <x-adminlte-datatable id="table2" :heads="[
             ['label' => 'No', 'width'=> 2 ],
             'Name',
             'Phone',
+            'Status',
+            'Jenjang',
+            'University',
+            'Faculty',
             ['label' => 'Angkatan', 'width' => 5],
             ['label' => 'Actions', 'no-export' => true, 'width' => 5],
         ]" head-theme="dark" striped hoverable bordered compressed with-buttons>
@@ -51,6 +55,10 @@
                 <td>{{ $loop->iteration }}</td>
                 <td class="text-capitalize">{{ strtolower($user->name) }}</td>
                 <td>{{ $user->phone_number }}</td>
+                <td>{{ $user->status }}</td>
+                <td>{{ $user->type_of_education }}</td>
+                <td>{{ $user->university }}</td>
+                <td>{{ $user->faculty }}</td>
                 <td>{{ $user->arrival_year }}</td>
                 <td style="white-space: nowrap;">
                     <a href="{{ route('dataanggota.edit', $user)}}" class="btn btn-xs btn-default text-primary shadow" title="Edit">
@@ -64,13 +72,17 @@
             </tr>
         @endforeach
     </x-adminlte-datatable>
+</div>    
+
 @stop
 
 @section('css')
 @stop
 
 @section('js')
-
+@can('adminkeu')
+@section('plugins.DatatablesPlugins', true)
+@endcan
 @if(Session::has('success'))
     <script>
         $(document).ready(function(){

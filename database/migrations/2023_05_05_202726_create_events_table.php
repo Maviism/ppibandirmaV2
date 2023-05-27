@@ -16,13 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->string('venue');
             $table->dateTime('datetime');
-            $table->string('image_url')->nullable();
-            $table->string('type')->default('public');
+            $table->string('type')->default('Public');
             $table->text('description');
-            $table->string('gallery_url')->nullable();
             $table->string('responsible_dept')->nullable();
-            $table->integer('total_participants')->nullable(); //generate when event created
+            $table->integer('total_participants')->default(0)->nullable(); //generate when event created
+            $table->string('image_url')->nullable();
+            $table->string('gallery_url')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

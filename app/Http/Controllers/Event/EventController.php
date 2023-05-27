@@ -14,9 +14,15 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::with('absensi')->orderBy('datetime', 'desc')->get();
+        $year = $request->query('year');
+        $events = Event::with('absensi')
+            ->when($year, function ($query, $year) {
+                return $query->whereYear('datetime', $year);
+            })
+            ->orderBy('datetime', 'desc')
+            ->get();
         return view('admin.event.event', [
             'events' => $events
         ]);

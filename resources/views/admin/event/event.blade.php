@@ -11,8 +11,9 @@
         <i class="fa fa-lg fa-fw fa-calendar-plus mr-1"></i>Buat event
     </a>
 
-
-    <div class="card card-primary">
+<div class="row">
+<div class="col-12">
+    <div class="card">
         <div class="card-body">
             <!-- This is what the search control looks like -->
         <div>
@@ -25,10 +26,11 @@
             </div>
             <div class="px-0 px-lg-2 row justify-content-between">
                 <div>
-                    <select class="custom-select" style="width: auto;" data-sortOrder>
+                    <select class="custom-select" style="width: auto;" data-sortOrder id="yearSelect">
                         <option value="index"> Sort by Year </option>
                         <option value="2022"> 2022 </option>
                         <option value="2023"> 2023 </option>
+                        <option value=""> All </option>
                     </select>
                     <div class="btn-group">
                         <a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascending </a>
@@ -51,20 +53,24 @@
             ];
             @endphp
             @foreach($events as $event)
-            <div class="filtr-item col-sm-3" data-category="{{$event->type}}" data-sort="{{date('Y', strtotime($event->datetime))}}">
-                <div class="card pt-2">
+            <div class="filtr-item col-sm-4 " data-category="{{$event->type}}" data-sort="{{date('Y', strtotime($event->datetime))}}">
+                <div class="card">
                     <div class="position-relative px-2">
-                            <div>
-                                <div class="btn btn-xs {{$typeClasses[$event->type]}} px-2">{{$event->type}}</div>
-                                <div class="card-text text-gray mt-2">{{$event->datetime}}</div>
-                            </div>
-                            <div>
-                                <h5 class="card-title text-bold" style="height: 4rem">{{ $event->title }}</h5>
-                                <p class="card-text">{{$event->venue}}.</p>
-                            </div>
                         <div class="" style="position: absolute; top: 0; right: 4px;">
-                            <div class="mb-n2 text-lg text-bold text-success">{{ number_format($event->absensi->count()/$event->total_participants*100, 2) }}<span class="text-sm">%</span></div>
-                            <div>{{ $event->absensi->count()}}/{{$event->total_participants}}</div> 
+                            @if ($event->total_participants > 0)
+                                <div class="mb-n2 text-lg text-bold text-success">{{ number_format($event->absensi->count()/$event->total_participants*100, 2) }}<span class="text-sm">%</span></div>
+                            @else
+                                <div class="mb-n2 text-lg text-bold text-success">0.00<span class="text-sm">%</span></div>
+                            @endif
+                            <div>{{ $event->absensi->count()}}/{{$event->total_participants}}</div>
+                        </div>
+                        <div>
+                            <div class="btn btn-xs {{$typeClasses[$event->type]}} px-2 mt-1">{{$event->type}}</div>
+                            <div class="card-text text-gray mt-2">{{$event->datetime}}</div>
+                        </div>
+                        <div>
+                            <h5 class="card-title font-weight-normal" style="height: 4rem">{{ $event->title }}</h5>
+                            <p class="card-text text-truncate"><small>{{$event->venue}}.</small></p>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -80,6 +86,8 @@
 
         </div>
     </div>
+</div>
+</div>
 @stop
 
 @section('css')
@@ -94,5 +102,16 @@
         $('.btn[data-filter]').removeClass('active');
         $(this).addClass('active');
     }); 
+
+    $(document).ready(function() {
+        $('#yearSelect').change(function() {
+            var selectedYear = $(this).val();
+            if (selectedYear !== 'index') {
+                var baseUrl = window.location.origin;
+                var url = baseUrl + "/admin/event?year=" + selectedYear;
+                window.location.href = url;
+            }
+        });
+    });
 </script>
 @stop

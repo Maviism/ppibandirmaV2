@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('personal_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('gender')->default('Laki-laki');
+            $table->string('gender', 20)->default('Laki-laki');
             $table->string('birthday', 15)->nullable();
             $table->string('phone_number', 17)->nullable();
             $table->string('type_of_residence')->nullable(); //(apart, asrama)

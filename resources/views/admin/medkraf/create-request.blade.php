@@ -47,7 +47,7 @@
                 </x-slot>
                 <x-slot name="bottomSlot">
                     <span class="text-sm text-gray">
-                        Maximal deadline h-5
+                        Maksimal deadline h-5
                     </span>
                 </x-slot>
             </x-adminlte-input-date>

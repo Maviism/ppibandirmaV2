@@ -21,9 +21,9 @@ use App\Http\Controllers\Organisation\DesignRequestController;
 */
 
 Route::get('/', function () { return view('welcome');})->name('index');
-Route::get('/event', function () { return view('Pages.event');})->name('event');
-Route::get('/member', function () { return view('Pages.member');})->name('member');
-Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
+// Route::get('/event', function () { return view('Pages.event');})->name('event');
+// Route::get('/member', function () { return view('Pages.member');})->name('member');
+// Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
 Route::get('/kabinet', function () { return view('Pages.kabinet');})->name('kabinet');
 
 Route::get('/membercard/{id}', [UserController::class, 'generateMembershipCard']);
@@ -34,9 +34,9 @@ Route::prefix('admin')
     ->group(function(){
         Route::middleware('role:allAdmin')->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('admin');
-            Route::resource('/kabinet', KabinetController::class);
-            Route::resource('/event', EventController::class);
-            Route::resource('/absensi', AbsensiController::class)->except('store');
+            Route::resource('/kabinet', KabinetController::class)->except(['show', 'update']);
+            Route::resource('/event', EventController::class)->except('show');
+            Route::resource('/absensi', AbsensiController::class)->except(['index', 'store', 'update', 'edit']);
             Route::post('/absensi/user', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
             Route::post('/design/create', [DesignRequestController::class, 'store'])->name('design.store');
@@ -45,7 +45,7 @@ Route::prefix('admin')
         });
 
         Route::middleware('role:adminkeu')->group(function(){
-            Route::resource('/dataanggota', UserController::class);
+            Route::resource('/dataanggota', UserController::class)->except('show');
             Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview']);
             Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
             Route::get('/unapproveuser/{id}', [UserController::class, 'unapproveuser'])->name('deletedataanggota');
@@ -57,7 +57,7 @@ Route::prefix('admin')
         });
 
         Route::middleware('role:akastrat')->group(function(){
-            Route::resource('/pojokbaca', BookController::class);
+            Route::resource('/pojokbaca', BookController::class)->except(['create', 'show']);
             Route::post('/pojokbaca/category/create', [BookController::class, 'storeCategory'])->name('category.store');
             Route::post('/pojokbaca/ebook/create', [BookController::class, 'storeEbook'])->name('ebook.store');
             Route::delete('/pojokbaca/category/{id}', [BookController::class, 'destroyCategory'])->name('category.destroy');

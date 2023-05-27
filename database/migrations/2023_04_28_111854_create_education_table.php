@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('faculty');
             $table->string('department');
             $table->integer('arrival_year');
-            $table->string('status'); //Tomer, Active, Mezun
-            $table->string('type_of_education'); //s1, s2, s3
+            $table->string('status', 50); //Tomer, Kuliah, Lulus
+            $table->string('type_of_education', 50); //s1, s2, s3
             $table->timestamps();
         });
     }
