@@ -78,7 +78,7 @@ class EventController extends Controller
             $event->save();
         }
 
-        return redirect('/admin/event')->with('success', 'Event created successfully.');
+        return redirect('/admin/event?year=2023')->with('success', 'Event created successfully.');
 
     }
 

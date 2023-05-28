@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <a href="/admin/event" class="btn btn-info mb-1"><i class="fa fa-lg fa-chevron-left mr-1"></i>Kembali</a>
+    <a href="/admin/event?year=2023" class="btn btn-info mb-1"><i class="fa fa-lg fa-chevron-left mr-1"></i>Kembali</a>
     <div class="my-1">
         <x-adminlte-button label="Absensi Scanner" data-toggle="modal" icon="fa fa-lg fa-fw fa-user-check" data-target="#scannerAbsensi" class="bg-purple"/>
         <x-adminlte-button label="Absensi Manual" data-toggle="modal" icon="fa fa-lg fa-fw fa-user-check" data-target="#manualAbsensi" class="bg-pink"/>

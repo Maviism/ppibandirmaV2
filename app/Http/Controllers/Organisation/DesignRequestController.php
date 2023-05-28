@@ -79,7 +79,7 @@ class DesignRequestController extends Controller
         $recepient = config('whatsapp.recipient.medkraf.group_name');
         $is_group = config('whatsapp.recipient.medkraf.is_group');
         $this->whatsappService->sendMessage($recepient, $is_group , $message); //send message to group
-        $this->whatsappService->sendMessage('905525911215', false, $message); //send message to chief
+        $this->whatsappService->sendMessage('905521559789', "false", $message); //send message to chief
 
         return redirect('/admin');
     }
