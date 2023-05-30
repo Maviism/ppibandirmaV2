@@ -23,6 +23,6 @@ Route::prefix('wa')->group(function() {
     Route::get('/', function(){
         return true;
     });
-    Route::get('/membercard/{number}', [Whatsapp::class, 'memberCard']);
+    Route::get('/membercard/{number}', [Whatsapp::class, 'memberCard'])->middleware('api.key');
 
 });

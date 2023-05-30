@@ -18,8 +18,9 @@
                 <option value="Administrasi & Keuangan">Administrasi & Keuangan</option>
                 <option value="Advokasi & Humas">Advokasi & Humas</option>
                 <option value="Akademik & Kajian Strategis">Akademik & Kajian Strategis</option>
-                <option value="Pengembangan Sumber Daya Manusia">Pengembangan Sumber Daya Manusia</option>
+                <option value="Agama">Agama</option>
                 <option value="Keputrian">Keputrian</option>
+                <option value="Pengembangan Sumber Daya Manusia">Pengembangan Sumber Daya Manusia</option>
                 <option value="Sosial Pengabdian Masyarakat">Sosial Pengabdian Masyarakat</option>
                 <option value="Wirausaha">Wirausaha</option>
             </x-adminlte-select>
