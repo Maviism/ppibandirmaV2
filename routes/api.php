@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Whatsapp;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('wa')->group(function() {
+    Route::get('/', function(){
+        return true;
+    });
+    Route::get('/membercard/{number}', [Whatsapp::class, 'memberCard']);
+
 });

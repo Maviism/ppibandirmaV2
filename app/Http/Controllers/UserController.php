@@ -291,13 +291,10 @@ class UserController extends Controller
         $qrCodeImage = Image::make($qrCodeFilePath)->resize(350, 350);
         $image->insert($qrCodeImage, 'center', -12, -34);    
 
-        // Encode the image to the desired format (e.g., JPEG) and retrieve the encoded data
         $imageData = $image->encode('jpg')->getEncoded();
 
-        // Return the image as a response
-        return Response::make($imageData, 200, [
-            'Content-Type' => 'image/jpeg',
-        ]);
+        // Return the image as a response with the .jpg extension
+        return response($imageData)->header('Content-Type', 'image/jpeg');
     }
 
 }
