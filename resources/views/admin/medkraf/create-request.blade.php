@@ -35,7 +35,7 @@
             $config = [
                 'format' => 'YYYY/MM/DD',
                 'dayViewHeaderFormat' => 'MMM YYYY',
-                'minDate' => "js:moment().add(5, 'days').endOf('day')",
+                'minDate' => "js:moment().add(7, 'days').endOf('day')",
                 'maxDate' => "js:moment().endOf('year')",
             ];
             @endphp
@@ -48,7 +48,7 @@
                 </x-slot>
                 <x-slot name="bottomSlot">
                     <span class="text-sm text-gray">
-                        Maksimal deadline h-5
+                        Maksimal deadline h-7
                     </span>
                 </x-slot>
             </x-adminlte-input-date>
