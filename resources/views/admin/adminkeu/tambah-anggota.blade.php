@@ -13,7 +13,7 @@
         <div class="row p-2 rounded" style="background-color: #FFF;">
             <div class="container col-md-6 line">
                 <p class="text-primary bold mt-1">Informasi Umum</p>
-                <x-adminlte-input name="iFullname" label="Nama lengkap" placeholder="name lengkap"/>
+                <x-adminlte-input name="iFullname" label="Nama lengkap" placeholder="name lengkap" enable-old-support/>
                 <x-adminlte-input name="iMail" type="email" label="Email"   placeholder="mail@example.com" enable-old-support/>
                 <x-adminlte-input name="iPhone" type="number" label="Nomor HP" placeholder="90552xxxxxx" enable-old-support>
                     <x-slot name="prependSlot">
