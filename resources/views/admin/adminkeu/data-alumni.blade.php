@@ -29,10 +29,27 @@
             </tr>
         @endforeach
     </x-adminlte-datatable>
+    <hr>
+    <hr>
+    <div class="h5">Anggota yg pindah</div>
+    <x-adminlte-datatable id="table-moved" :heads="[
+            ['label' => 'ID', 'width'=> 2 ],
+            'Name',
+            'Angkatan',
+            'Reason',
+        ]" striped hoverable bordered compressed with-buttons>
+        @foreach($deletedUsers as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->arrival_year}}</td>
+                <td>{{ $user->reason}}</td>
+            </tr>
+        @endforeach
+    </x-adminlte-datatable>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

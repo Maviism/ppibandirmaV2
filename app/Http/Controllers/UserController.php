@@ -45,8 +45,11 @@ class UserController extends Controller
                     ->select('users.id', 'users.name', 'users.is_approved' ,'p.phone_number', 'e.arrival_year')
                     ->get();
 
+        $deletedUsers = DeletedUser::get();            
+
         return view('admin.adminkeu.data-alumni', [
             'graduatedUsers' => $users,
+            'deletedUsers' => $deletedUsers
         ]);
     }
 
