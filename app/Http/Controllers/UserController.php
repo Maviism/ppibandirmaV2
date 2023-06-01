@@ -76,6 +76,7 @@ class UserController extends Controller
                         ->select('university', 'faculty', DB::raw('count(*) as count'))
                         ->whereNotIn('status', ['lulus'])
                         ->groupBy('university', 'faculty')
+                        ->orderBy('count', 'Desc')
                         ->get();
 
         // dd($facultyCounts);
