@@ -269,17 +269,37 @@ class UserController extends Controller
             // Handle decryption error, such as returning null or throwing an exception
             abort(404);
         }
-        $user = User::findOrFail($decrypted);
+        $user = User::with('education')->findOrFail($decrypted);
         
         $templatePath = storage_path('app/card.png');
         $image = Image::make($templatePath);
 
+        $userName = ucwords(strtolower($user->name));
+        $parts = explode(" ", $userName); // Split the name into individual parts
+        
+        // Process the first and second names
+        $firstName = $parts[0] ?? "";
+        $secondName = $parts[1] ?? "";
+        
+        // Process the remaining names
+        $initials = "";
+        for ($i = 2; $i < count($parts); $i++) {
+            $initials .= substr($parts[$i], 0, 1) . ".";
+        }
+        
+        $modifiedName = $firstName . " " . $secondName . " " . trim($initials);
         // Customize the membership card with the person's name
-        $image->text($user->name, 280, 720, function ($font) {
-            $font->file(public_path('/assets/fonts/Poppins-Regular.ttf')); 
-            $font->size(54);
-            $font->color('#E147A6');
-            $font->align('center');
+        $image->text($modifiedName, 57, 600, function ($font) {
+            $font->file(public_path('/assets/fonts/Mark-Pro-Bold.ttf')); 
+            $font->size(32);
+            $font->color('#000');
+            $font->valign('middle');
+        });
+
+        $image->text($user->education->department, 57, 630, function ($font) {
+            $font->file(public_path('/assets/fonts/Mark-Pro.ttf')); 
+            $font->size(24);
+            $font->color('#555d50');
             $font->valign('middle');
         });
 
@@ -289,11 +309,14 @@ class UserController extends Controller
                 ->margin(1)
                 ->errorCorrection('Q')
                 ->eye('circle')
+                ->eyeColor(0, 0, 0, 0, 91, 185, 50)
+                ->eyeColor(1, 0, 0, 0, 33, 136, 255)
+                ->eyeColor(2, 0, 0, 0, 219, 76, 159)
                 ->size(300)
                 ->generate($user->email, $qrCodeFilePath);
         
-        $qrCodeImage = Image::make($qrCodeFilePath)->resize(350, 350);
-        $image->insert($qrCodeImage, 'center', -12, -34);    
+        $qrCodeImage = Image::make($qrCodeFilePath)->resize(250, 250);
+        $image->insert($qrCodeImage, 'center', -26, 64);    
 
         $imageData = $image->encode('jpg')->getEncoded();
 

@@ -8,11 +8,11 @@
     </x-slot>
     
     <x-slot name="form">
-        <!-- <div class="w-56 col-span-6 sm:col-span-4 items-center bg-yellow-300">
+        <div class="w-56 col-span-6 sm:col-span-4 items-center bg-yellow-300">
             <a href="{{ env('APP_URL') }}/membercard/{{ $state['encryptedUserId'] }}">
                 <img src="{{ env('APP_URL') }}/membercard/{{ $state['encryptedUserId'] }}" alt="digital member card">
             </a>
-        </div> -->
+        </div>
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">

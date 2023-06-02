@@ -78,6 +78,7 @@
 @section('css')
 @stop
 
+@section('plugins.DatatablesPlugins', true)
 @section('js')
 <script src="/vendor/html5-qrcode/html5-qrcode.min.js"></script>
 <script>
