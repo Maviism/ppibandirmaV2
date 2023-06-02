@@ -286,12 +286,21 @@ class UserController extends Controller
         for ($i = 2; $i < count($parts); $i++) {
             $initials .= substr($parts[$i], 0, 1) . ".";
         }
+        switch ($firstName) {
+            case "Muhammad":
+            case "Mochammad":
+            case "Mohammad":
+            case "Muchammad":
+                $firstName = "M.";
+                break;
+            // Add more cases for other specific first names here
+        }
         
         $modifiedName = $firstName . " " . $secondName . " " . trim($initials);
         // Customize the membership card with the person's name
         $image->text($modifiedName, 57, 600, function ($font) {
             $font->file(public_path('/assets/fonts/Mark-Pro-Bold.ttf')); 
-            $font->size(32);
+            $font->size(30);
             $font->color('#000');
             $font->valign('middle');
         });
