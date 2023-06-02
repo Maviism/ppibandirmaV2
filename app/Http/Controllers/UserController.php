@@ -296,9 +296,9 @@ class UserController extends Controller
             $font->valign('middle');
         });
 
-        $image->text($user->education->department, 57, 630, function ($font) {
+        $image->text($user->education->department, 57, 632, function ($font) {
             $font->file(public_path('/assets/fonts/Mark-Pro.ttf')); 
-            $font->size(24);
+            $font->size(20);
             $font->color('#555d50');
             $font->valign('middle');
         });
