@@ -60,7 +60,7 @@ class AbsensiController extends Controller
         }
         $registeredUser = Absensi::with('user')->where('event_id', $id)->get();
         $registeredUsers = $registeredUser->pluck('user.id')->toArray(); // Get the IDs of registered users
-
+        // dd($registeredUser);
         $usersRegistered = $users->whereIn('id', $registeredUsers); // Get the collection of registered users
         $usersNotRegistered = $users->whereNotIn('id', $registeredUsers); // Get the collection of users who haven't registered
         return view('admin.event.absensi', [
@@ -73,11 +73,10 @@ class AbsensiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        $absensi = Absensi::findOrFail($id);
+        $absensi = Absensi::where('user_id',$id)->where('event_id',$request->iEventId);
         $absensi->delete();
-        
         return redirect()->back();
     }
 }
