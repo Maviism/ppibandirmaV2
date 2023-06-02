@@ -53,12 +53,20 @@ class AbsensiController extends Controller
     public function show(string $id)
     {
         $event = Event::find($id);
-        $users = User::get();
+        if($event->type == 'Internal'){
+            $users = User::with('education')->where('role', '!=', 'user')->get();
+        }else {
+            $users = User::with('education')->get();
+        }
         $registeredUser = Absensi::with('user')->where('event_id', $id)->get();
+        $registeredUsers = $registeredUser->pluck('user.id')->toArray(); // Get the IDs of registered users
+
+        $usersRegistered = $users->whereIn('id', $registeredUsers); // Get the collection of registered users
+        $usersNotRegistered = $users->whereNotIn('id', $registeredUsers); // Get the collection of users who haven't registered
         return view('admin.event.absensi', [
             'event' => $event,
-            'users' => $users,
-            'registeredUsers' => $registeredUser
+            'users' => $usersNotRegistered,
+            'registeredUsers' => $usersRegistered
         ]);
     }
 

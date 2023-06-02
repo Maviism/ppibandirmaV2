@@ -21,7 +21,7 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{ $user->name }}</td>
-                    <td>{{ $user->role }}</td>
+                    <td>{{ $user->education->arrival_year }}</td>
                     <td style="white-space: nowrap;">
                         <form class="form-hadir" action="{{ route('absensi.store') }}" method="POST">
                             @csrf
@@ -56,9 +56,9 @@
         @foreach($registeredUsers as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->user->name }}</td>
+                    <td>{{ $user->name }}</td>
                     <td>{{ $user->updated_at }}</td>
-                    <td>{{ $user->user->education->arrival_year }}</td>
+                    <td>{{ $user->education->arrival_year }}</td>
                     <td style="white-space: nowrap;">
                     <form action="{{ route('absensi.destroy', $user->id) }}" method="POST">
                     @csrf
