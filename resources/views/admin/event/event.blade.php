@@ -66,7 +66,7 @@
                         </div>
                         <div>
                             <div class="btn btn-xs {{$typeClasses[$event->type]}} px-2 mt-1">{{$event->type}}</div>
-                            <div class="card-text text-gray mt-2">{{$event->datetime}}</div>
+                            <div class="card-text text-gray mt-2">{{ date('j F Y H:i', strtotime($event->datetime))  }}</div>
                         </div>
                         <div>
                             <h5 class="card-title font-weight-normal" style="height: 4rem">{{ $event->title }}</h5>

@@ -58,10 +58,8 @@ class AbsensiController extends Controller
         }else {
             $users = User::with('education')->get();
         }
-        $registeredUser = Absensi::with('user')->where('event_id', $id)->get();
-        $registeredUsers = $registeredUser->pluck('user.id')->toArray(); // Get the IDs of registered users
-        // dd($registeredUser);
-        $usersRegistered = $users->whereIn('id', $registeredUsers); // Get the collection of registered users
+        $usersRegistered = Absensi::with('user')->where('event_id', $id)->get();
+        $registeredUsers = $usersRegistered->pluck('user.id')->toArray(); // Get the IDs of registered users
         $usersNotRegistered = $users->whereNotIn('id', $registeredUsers); // Get the collection of users who haven't registered
         return view('admin.event.absensi', [
             'event' => $event,

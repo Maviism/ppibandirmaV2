@@ -17,7 +17,7 @@
             <ul class="list-disc px-0 py-2 lg:px-2">
                 @if(!empty($posts))
                 @foreach($posts as $post)
-                <li class="ml-4 my-1"><a href="{{$post['link']}}" class="hover:italic">{{$post['title']['rendered']}}</a></li>
+                <li class="ml-4 my-1"><a href="{{$post['link']}}" class="hover:italic">{!! $post['title']['rendered'] !!}</a></li>
                 <hr>
                 @endforeach
                 @endif

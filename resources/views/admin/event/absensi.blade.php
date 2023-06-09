@@ -56,9 +56,9 @@
         @foreach($registeredUsers as $user)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->user->name }}</td>
                     <td>{{ $user->updated_at }}</td>
-                    <td>{{ $user->education->arrival_year }}</td>
+                    <td>{{ $user->user->education->arrival_year }}</td>
                     <td style="white-space: nowrap;">
                     <form action="{{ route('absensi.destroy', $user->id) }}" method="POST">
                     @csrf
