@@ -35,8 +35,8 @@
             $config = [
                 'format' => 'YYYY/MM/DD',
                 'dayViewHeaderFormat' => 'MMM YYYY',
-                'minDate' => "js:moment().add(7, 'days').endOf('day')",
                 'maxDate' => "js:moment().endOf('year')",
+                'minDate' => "js:moment().add(7, 'days').startOf('day')",
             ];
             @endphp
             <x-adminlte-input-date name="idDeadline" label="Deadline"
