@@ -20,7 +20,7 @@ class PenaPpibandirma extends Component
                 $posts = json_decode($response->getBody(), true);
                 
                 if (!empty($posts)) {
-                    return array_slice($posts, 0, 6);
+                    return array_slice($posts, 0, 4);
                 }
             } catch (\Exception $e) {
                 // Handle the exception, such as logging or displaying an error message

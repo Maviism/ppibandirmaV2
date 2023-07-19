@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="description" content="PPI Bandirma (Perhimpunan Pelajar Indonesia) Bandirma adalah organisasi yang sedang menetap di wilayah kerja PPI Bandirma. Ruang lingkup kerja PPI bandirma mencakup seluruh kegiatan pelajar Indonesia yang berada di provinsi Balikesir dan Çanakkale, Turki. Namun hingga kini kota yang berisikan pelajar Indonesia di wilayah tersebut hanyalah kota Bandirma dan Kota Çanakkale.">
 
         <title>
             @yield('title'){{ config('app.name', 'Laravel') }}

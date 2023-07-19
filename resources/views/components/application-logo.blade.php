@@ -1,1 +1,1 @@
-<img src="assets/Logo.png" alt="LOGO PPI">
+<img src="assets/Logo.webp" alt="LOGO PPI">
