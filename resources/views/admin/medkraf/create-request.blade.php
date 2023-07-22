@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<a href="/admin/kabinet" class="btn btn-info mb-2"><i class="fa fa-md fa-chevron-left"></i> Kembali</a>
+<a href="/admin" class="btn btn-info mb-2"><i class="fa fa-md fa-chevron-left"></i> Kembali</a>
 <form method="POST" action="{{ route('design.store') }}" enctype="multipart/form-data" >
 <div class="card p-2 ">
     <div class="row">
@@ -78,5 +78,9 @@
 @section('js')
 @section('plugins.TempusDominusBs4', true)
 @section('plugins.BsCustomFileInput', true)
-
+<script>
+    $(document).on('submit', 'form', function() {
+        $('button').attr('disabled', 'disabled');
+    });
+</script>
 @stop

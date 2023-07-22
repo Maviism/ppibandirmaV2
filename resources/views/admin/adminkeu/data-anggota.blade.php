@@ -49,7 +49,7 @@
             'Faculty',
             ['label' => 'Angkatan', 'width' => 5],
             ['label' => 'Actions', 'no-export' => true, 'width' => 5],
-        ]" head-theme="dark" striped hoverable bordered compressed with-buttons>
+        ]" head-theme="dark" striped hoverable bordered compressed>
         @foreach($users as $user)
             <tr>
                 <td>{{ $loop->iteration }}</td>
