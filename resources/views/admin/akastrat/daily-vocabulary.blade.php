@@ -29,10 +29,11 @@
             <li>Pesan dikirim setiap pukul 06.00 TRT</li>
             <li>Pesan dikirim ke grup *TURSU (Türkçe Kursu)*📝 whatsapp</li>
             <li>Vocabulary dikirim sesuai dengan urutan</li>
+            <li>Apabila kata kerja dan kata benda kurang dari 3 atau ungkapan kurang dari 1 maka pesan tidak akan dikirim</li>
         </ul>
     </div>
     <div class="px-2">
-        <x-adminlte-modal id="sentVocabModal" title="Add Category" theme="pink" icon="fas fa-check" size='md'>
+        <x-adminlte-modal id="sentVocabModal" title="List sent vocabs" theme="pink" icon="fas fa-check" size='md'>
             @csrf
             <x-adminlte-datatable id="sentVocabulary" :heads="[
                 ['label' => 'No', 'width' => 1], 'Kata ', 'Makna', 'Type'
