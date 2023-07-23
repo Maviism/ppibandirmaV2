@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DailyVocabularyController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Event\AbsensiController;
 use App\Http\Controllers\Organisation\KabinetController;
@@ -62,5 +63,8 @@ Route::prefix('admin')
             Route::post('/pojokbaca/ebook/create', [BookController::class, 'storeEbook'])->name('ebook.store');
             Route::delete('/pojokbaca/category/{id}', [BookController::class, 'destroyCategory'])->name('category.destroy');
             Route::delete('/pojokbaca/ebook/{id}', [BookController::class, 'destroyEbook'])->name('ebook.destroy');
+            Route::get('/vocabulary', [DailyVocabularyController::class, 'index']);
+            Route::post('/vocabulary', [DailyVocabularyController::class, 'importExcel'])->name('vocabulary.store');
+            Route::delete('/vocabulary/{id}', [DailyVocabularyController::class, 'destroy']);
         });
 });

@@ -346,6 +346,11 @@ return [
                     'icon' => 'fas fa-fw fa-book',
                     'url'  => '/admin/pojokbaca',
                 ],
+                [
+                    'text' => 'Daily Vocabulary',
+                    'icon' => 'fas fa-fw fa-language',
+                    'url'  => '/admin/vocabulary',
+                ],
             ],
         ],
         [

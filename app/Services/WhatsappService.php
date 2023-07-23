@@ -31,8 +31,13 @@ class WhatsappService
             'x-api-key' => $this->apiKey
         ];
         
-        $response = $this->sendRequest('post', '/api/send-message', $params, $headers);
-
+        
+        $res = $response = $this->sendRequest('post', '/api/send-message', $params, $headers);
+        if($res){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     private function sendRequest($method, $url,$params = [], $headers = [])
@@ -45,6 +50,7 @@ class WhatsappService
             $response = $client->request($method, $this->baseUrl.$url, [
                 'form_params' => $params
             ]);
+            return 1;
         } catch (\Exception $e) {
             // Send email notification
             $recipientEmail = 'muadzihharul@gmail.com';
@@ -55,6 +61,7 @@ class WhatsappService
                 $message->to($recipientEmail)
                         ->subject($subject);
             });
+            return 0;
         }
 
     }
