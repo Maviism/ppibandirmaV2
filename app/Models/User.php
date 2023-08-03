@@ -65,6 +65,22 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public static function getGraduated()
+    {
+        $graduated = User::join('education', 'users.id', '=', 'education.user_id')
+                    ->where('education.status', 'Lulus')
+                    ->select('users.name', 'education.*')->get();
+        return $graduated;
+    }
+
+    public static function getActiveMembers() //where currently active in university havent graduated
+    {
+        $members = User::join('education', 'users.id', '=', 'education.user_id')
+                ->whereNot('education.status', 'Lulus')
+                ->select('users.name', 'education.*')->get();
+        return $members;
+    }
+
     public function education(){
         return $this->hasOne(Education::class);
     }

@@ -51,6 +51,8 @@
             }
         }
         </style>
+
+        
     </head>
     <body class="antialiased">
         
@@ -68,6 +70,7 @@
         @stack('modals')
 
         @livewireScripts
+        @stack('scripts')
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             var fadeIns = document.querySelectorAll('.fade-in');

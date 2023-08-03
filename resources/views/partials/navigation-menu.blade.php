@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-transparent fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-gray-100">
+<nav x-data="{ open: false }" class="bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80 fixed top-0 left-0 right-0 z-50 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -12,9 +12,23 @@
             </div>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="hidden space-x-12 sm:-my-px sm:mr-10 sm:flex">
-                    <!-- <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
-                        {{ __('Hi Bandirmans') }}
-                    </x-nav-link> -->
+                    <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
+                        {{ __('Home') }}
+                    </x-nav-link>
+                    <x-nav-link href="https://rumustomer.ppibandirma.com" target="blank" :active="request()->routeIs('tomer')">
+                        {{ __('Belajar Tomer') }}
+                        <svg class="ml-1 mb-1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0,0,256,256"
+                        style="fill:#000000;">
+                        <g fill="#787575" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(2,2)"><path d="M84,11c-1.7,0 -3,1.3 -3,3c0,1.7 1.3,3 3,3h22.80078l-46.40039,46.40039c-1.2,1.2 -1.2,3.09922 0,4.19922c0.6,0.6 1.39961,0.90039 2.09961,0.90039c0.7,0 1.49961,-0.30039 2.09961,-0.90039l46.40039,-46.40039v22.80078c0,1.7 1.3,3 3,3c1.7,0 3,-1.3 3,-3v-30c0,-1.7 -1.3,-3 -3,-3zM24,31c-7.2,0 -13,5.8 -13,13v60c0,7.2 5.8,13 13,13h60c7.2,0 13,-5.8 13,-13v-45c0,-1.7 -1.3,-3 -3,-3c-1.7,0 -3,1.3 -3,3v45c0,3.9 -3.1,7 -7,7h-60c-3.9,0 -7,-3.1 -7,-7v-60c0,-3.9 3.1,-7 7,-7h45c1.7,0 3,-1.3 3,-3c0,-1.7 -1.3,-3 -3,-3z"></path></g></g>
+                        </svg>
+                    </x-nav-link>
+                    <x-nav-link href="https://blog.ppibandirma.com" target="blank" :active="request()->routeIs('tomer')">
+                        {{ __('News/Artikel') }}
+                        <svg class="ml-1 mb-1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0,0,256,256"
+                        style="fill:#000000;">
+                        <g fill="#787575" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(2,2)"><path d="M84,11c-1.7,0 -3,1.3 -3,3c0,1.7 1.3,3 3,3h22.80078l-46.40039,46.40039c-1.2,1.2 -1.2,3.09922 0,4.19922c0.6,0.6 1.39961,0.90039 2.09961,0.90039c0.7,0 1.49961,-0.30039 2.09961,-0.90039l46.40039,-46.40039v22.80078c0,1.7 1.3,3 3,3c1.7,0 3,-1.3 3,-3v-30c0,-1.7 -1.3,-3 -3,-3zM24,31c-7.2,0 -13,5.8 -13,13v60c0,7.2 5.8,13 13,13h60c7.2,0 13,-5.8 13,-13v-45c0,-1.7 -1.3,-3 -3,-3c-1.7,0 -3,1.3 -3,3v45c0,3.9 -3.1,7 -7,7h-60c-3.9,0 -7,-3.1 -7,-7v-60c0,-3.9 3.1,-7 7,-7h45c1.7,0 3,-1.3 3,-3c0,-1.7 -1.3,-3 -3,-3z"></path></g></g>
+                        </svg>
+                    </x-nav-link>
                 </div>
                 @auth
                 <!-- Settings Dropdown -->
@@ -70,15 +84,15 @@
                     </x-dropdown>
                 </div>
                 @else
-                <div class="rounded-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2">
-                    <a href="{{route('login')}}">Login</a>
+                <div class="rounded-full  bg-gray-900  bg-opacity-50 border px-6 py-1">
+                    <a class="text-white" href="{{route('login')}}">Login</a>
                 </div>
                 @endauth
             </div>
             
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button aria-label="Main Menu" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button aria-label="Main Menu" @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -91,10 +105,17 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-blue-100">
         @guest
-        <x-responsive-nav-link class="bg-blue-500 text-white" href="{{ route('login') }}" >
+        <x-responsive-nav-link class="bg-gray-100 text-center" href="{{ route('login') }}" >
+            <div class="text-indigo-400 font-semibold">
                 {{ __('Login') }}
+            </div>
         </x-responsive-nav-link>
-
+        <x-responsive-nav-link class="bg-gray-100 text-gray-900 text-center " href="{{ route('login') }}" >
+                {{ __('Belajar Tomer') }}
+        </x-responsive-nav-link>
+        <x-responsive-nav-link class="bg-gray-100 text-gray-900 text-center" href="{{ route('login') }}" >
+                {{ __('News/Artikel') }} 
+        </x-responsive-nav-link>
         @endguest
         @auth
         <div class="pt-2 pb-3 space-y-1">
@@ -133,7 +154,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
-
                     <x-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
                         {{ __('Log Out') }}
