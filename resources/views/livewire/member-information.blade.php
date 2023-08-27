@@ -16,10 +16,12 @@
 
 </div>
 
-@push('scripts')
-    
+@push('head')
 <script src="{{ config('app.url') }}/vendor/chart.js/Chart.min.js"></script>
 <script src="{{ config('app.url') }}/vendor/chart.js/chartjs-plugin-piechart-outlabels.min.js"></script>
+@endpush
+
+@push('scripts')
 <script>
     const data = {!! json_encode($educations) !!};
     var ctx = document.getElementById('outlabeledChart');
