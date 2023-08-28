@@ -22,10 +22,15 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
         <meta name="theme-color" content="#2D3748">
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- OG -->
+        <meta property="og:title" content="Perhimpunan pelajar Indonesia Bandirma" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/assets/Logo.webp" />
 
+        <!-- Scripts -->
         @stack('head')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Styles -->
         @livewireStyles
 
@@ -48,18 +53,16 @@
 
         
     </head>
-    <body class="antialiased">
+    <body class="antialiased min-h-screen bg-white">
         
-        <div class="min-h-screen bg-white">
-            @include('partials.navigation-menu')
+        @include('partials.navigation-menu')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
 
-            @include('partials.footer')
-        </div>
+        @include('partials.footer')
 
         @stack('modals')
 
