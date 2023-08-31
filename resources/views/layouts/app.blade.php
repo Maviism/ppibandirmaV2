@@ -26,7 +26,7 @@
         <!-- OG -->
         <meta property="og:title" content="Perhimpunan pelajar Indonesia Bandirma" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/assets/Logo.webp" />
+        <meta property="og:image" content="{{ asset('assets/Logo.webp') }}" />
 
         <!-- Scripts -->
         @stack('head')

@@ -15,6 +15,7 @@
             @csrf
             <x-adminlte-select name="iDepartment" label="Departemen" enable-old-support>
                 <option value="" selected>Pilih departemen</option>
+                <option value="Ketua & Wakil">Ketua & Wakil</option>
                 <option value="Administrasi & Keuangan">Administrasi & Keuangan</option>
                 <option value="Advokasi & Humas">Advokasi & Humas</option>
                 <option value="Akademik & Kajian Strategis">Akademik & Kajian Strategis</option>
