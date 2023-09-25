@@ -36,18 +36,8 @@
 
         <link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css" async>
         <style>
-        .fade-in {
-            opacity: 0;
-            animation: fadeInAnimation 1s ease-in-out forwards;
-        }
-
-        @keyframes fadeInAnimation {
-            from {
-            opacity: 0;
-            }
-            to {
-            opacity: 1;
-            }
+        .box {
+            opacity: 0; /* Initially set opacity to 0 */
         }
         </style>
 
@@ -68,13 +58,6 @@
 
         @livewireScripts
         @stack('scripts')
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var fadeIns = document.querySelectorAll('.fade-in');
-            for (var i = 0; i < fadeIns.length; i++) {
-            fadeIns[i].classList.add('fade-in-show');
-            }
-        });
-        </script>
+       
     </body>
 </html>
