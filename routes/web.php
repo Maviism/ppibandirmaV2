@@ -9,6 +9,7 @@ use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Event\AbsensiController;
 use App\Http\Controllers\Organisation\KabinetController;
 use App\Http\Controllers\Organisation\DesignRequestController;
+use App\Http\Controllers\Organisation\FrequentlyAskQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +67,10 @@ Route::prefix('admin')
             Route::get('/vocabulary', [DailyVocabularyController::class, 'index']);
             Route::post('/vocabulary', [DailyVocabularyController::class, 'importExcel'])->name('vocabulary.store');
             Route::delete('/vocabulary/{id}', [DailyVocabularyController::class, 'destroy']);
+        });
+
+        Route::middleware('role:advokasi')->group(function(){
+            Route::resource('/faq', FrequentlyAskQuestionController::class)->except(['destroy', 'create', 'show', 'edit']);
+            Route::get('/faq/{id}/delete', [FrequentlyAskQuestionController::class, 'destroy']);
         });
 });

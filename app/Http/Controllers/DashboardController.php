@@ -23,8 +23,9 @@ class DashboardController extends Controller
                             ->get();
         
         $educationStatus = DB::table('education')->select('status', DB::raw('COUNT(*) as count'))->groupBy('status')->get();
-
+                            
         $designRequest = DesignRequest::where('deadline', '>=', date('Y/m/d'))->get();
+        
         return view('admin.dashboard',[
             'designRequest' => $designRequest,
             'arrivalYearData' => $arrivalYearData,

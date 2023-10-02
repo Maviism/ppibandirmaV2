@@ -218,33 +218,23 @@
     fontColor: '#495057',
     fontStyle: 'bold'
   }
-  var $arrivalYearChart = $('#visitors-chart')
-  var arrivalYearChart = new Chart($arrivalYearChart, {
-    data: {
+  var arrivalYearChart = $('#visitors-chart')
+  new Chart(arrivalYearChart, {
+    type : 'bar',
+    data : {
       labels: arrivalYearData.map((item)=>item.arrival_year),
       datasets: [{
-        type: 'line',
+        label : 'Laki-laki',
         data: arrivalYearData.map((item)=>item.male),
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        pointBorderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
-        fill: false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
+        backgroundColor: '#0d6efd',
       },
       {
-        type: 'line',
+        label : 'Perempuan',
         data: arrivalYearData.map((item)=>item.female),
-        backgroundColor: 'tansparent',
-        borderColor: '#E83E8C',
-        pointBorderColor: '#E83E8C',
-        pointBackgroundColor: '#E83E8C',
+        backgroundColor: '#d63384',
         fill: false
-        // pointHoverBackgroundColor: '#ced4da',
-        // pointHoverBorderColor    : '#ced4da'
-      }]
-    },
+      },
+    ]},
     options: {
       plugins : {
         legend: {
