@@ -392,8 +392,8 @@ return [
         ],
         [
             'text' => 'Advokasi',
-            'icon' => 'fas fa-fw fa-folder',
-            'icon_color' => 'blue',
+            'icon' => 'fas fa-fw fa-tasks',
+            'icon_color' => 'purple',
             'submenu' => [
                 [
                     'text' => 'FAQ',

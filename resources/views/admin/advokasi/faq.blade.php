@@ -59,10 +59,8 @@ $config = [
 
                 if (e.target.getAttribute('drag-item') < draggingEl.getAttribute('drag-item')) {
                     e.target.before(draggingEl);
-                    console.log('topbottom')
                 } else {
                     e.target.after(draggingEl);
-                    console.log('bottomtop')
                 }
 
                 // Refresh the livewire component
@@ -88,7 +86,6 @@ $config = [
 
             el.addEventListener('dragleave', e=>{
                 e.target.classList.remove('bg-primary')
-                console.log('leave');
             })
 
             el.addEventListener('dragend', e=>{

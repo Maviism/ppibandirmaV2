@@ -22,7 +22,7 @@ use App\Http\Controllers\Organisation\FrequentlyAskQuestionController;
 |
 */
 
-Route::get('/', function () { return view('welcome');})->name('index');
+Route::get('/', [DashboardController::class, 'welcome'])->name('index');
 Route::get('/event', function () { return view('Pages.event');})->name('event');
 Route::get('/member', function () { return view('Pages.member');})->name('member');
 Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
