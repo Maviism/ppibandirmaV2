@@ -101,7 +101,7 @@ $config = [
             
             let faqJSON = JSON.parse(faq);
             $('#editForm input[name="iQuestion"]').val(faqJSON.question);
-            // $('#editForm textarea[name="tAnswer"]').val(faqJSON.answer); 
+            $('#editForm textarea[name="tAnswer"]').val(faqJSON.answer); 
             $('#editForm .note-editable').html(faqJSON.answer); 
             $('#editForm').attr('action', `/admin/faq/${faqJSON.id}`); 
             $('#deleteFaq').attr('href', `/admin/faq/${faqJSON.id}/delete`);;
