@@ -28,7 +28,7 @@
               </p> -->
           </div>
         <div class="position-relative mb-4">
-            <canvas id="visitors-chart" height="200"></canvas>
+            <canvas id="arrival-year-chart" height="200"></canvas>
         </div>
         <div class="d-flex flex-row justify-content-end">
             <span class="mr-2">
@@ -139,7 +139,7 @@
 @stop
 
 @section('js')
-@section('plugins.Chartjs', true)
+<script src="{{ url('/vendor/chart.js/Chart.min.js') }}"></script>
 <script>
   var educationStatusData = {!! json_encode($educationStatus->toArray()) !!};
   var educationTypeData = {!! json_encode($educationType->toArray()) !!};
@@ -164,7 +164,7 @@
     ]
   }
 
-  Chart.register(ChartDataLabels);
+  // Chart.register(ChartDataLabels);
 
   var DoughnutOptions = {
     tooltips: {
@@ -218,33 +218,23 @@
     fontColor: '#495057',
     fontStyle: 'bold'
   }
-  var $arrivalYearChart = $('#visitors-chart')
-  var arrivalYearChart = new Chart($arrivalYearChart, {
-    data: {
+  var arrivalYearChart = $('#arrival-year-chart')
+  new Chart(arrivalYearChart, {
+    type : 'bar',
+    data : {
       labels: arrivalYearData.map((item)=>item.arrival_year),
       datasets: [{
-        type: 'line',
+        label : 'Laki-laki',
         data: arrivalYearData.map((item)=>item.male),
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        pointBorderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
-        fill: false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
+        backgroundColor: '#0d6efd',
       },
       {
-        type: 'line',
+        label : 'Perempuan',
         data: arrivalYearData.map((item)=>item.female),
-        backgroundColor: 'tansparent',
-        borderColor: '#E83E8C',
-        pointBorderColor: '#E83E8C',
-        pointBackgroundColor: '#E83E8C',
+        backgroundColor: '#d63384',
         fill: false
-        // pointHoverBackgroundColor: '#ced4da',
-        // pointHoverBorderColor    : '#ced4da'
-      }]
-    },
+      },
+    ]},
     options: {
       plugins : {
         legend: {

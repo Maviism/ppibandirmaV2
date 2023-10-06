@@ -390,6 +390,18 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Advokasi',
+            'icon' => 'fas fa-fw fa-tasks',
+            'icon_color' => 'purple',
+            'submenu' => [
+                [
+                    'text' => 'FAQ',
+                    'url' => '/admin/faq',
+                    'icon' => 'fas fa-fw fa-question-circle',
+                ]
+            ]
+        ]
     ],
 
     /*
@@ -546,7 +558,7 @@ return [
             'active' => false,
             'files' => [
                 [
-                    'type' => 'js',
+                    'type' => 'module',
                     'asset' => true,
                     'location' => 'vendor/chart.js/Chart.min.js',
                 ],
@@ -596,6 +608,21 @@ return [
                     'asset' => true,
                     'location' => 'vendor/filterizr/jquery.filterizr.min.js'
                 ]
+            ],
+        ],
+        'Summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.css',
+                ],
             ],
         ],
     ],

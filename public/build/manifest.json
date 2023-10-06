@@ -1,6 +1,10 @@
 {
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-a23e114b.css",
+=======
+    "file": "assets/app-c6f2837f.css",
+>>>>>>> chart
     "isEntry": true,
     "src": "resources/css/app.css"
   },
