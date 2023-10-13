@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Event;
 
 use App\Models\User;
 use App\Models\Event\Event;
+use App\Models\Event\Absensi;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class EventController extends Controller
 {
@@ -25,6 +28,31 @@ class EventController extends Controller
             ->get();
         return view('admin.event.event', [
             'events' => $events
+        ]);
+    }
+
+    public function eventAnalytics(Request $request)
+    {
+        $year = $request->query('year');
+
+        $usersAttendedEvents = Absensi::select('users.name', DB::raw('COUNT(absensis.event_id) as attended_events'))
+            ->join('users', 'absensis.user_id', '=', 'users.id')
+            ->groupBy('users.id', 'users.name')
+            ->orderByDesc('attended_events')
+            ->limit(5)
+            ->get();
+
+        $mostAttendedEvent = Absensi::select('events.title as event_name', DB::raw('COUNT(absensis.user_id) as attendees'))
+            ->join('events', 'absensis.event_id', '=', 'events.id')
+            ->groupBy('events.id', 'events.title')
+            ->orderByDesc('attendees')
+            ->limit(5)
+            ->get();
+
+        // dd($mostAttendedEvent);
+        return view('admin.event.event-analytic', [
+            'topUsers' => $usersAttendedEvents,
+            'topEvents' => $mostAttendedEvent
         ]);
     }
 

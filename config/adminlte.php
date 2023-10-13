@@ -369,6 +369,10 @@ return [
                     'text' => 'Events',
                     'url' => 'admin/event?year=2023',
                 ],
+                [
+                    'text' => 'Analytics',
+                    'url' => 'admin/event-analytic?year=2023',
+                ],
             ]
         ],
         [
@@ -598,16 +602,6 @@ return [
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
                 ],
-            ],
-        ],
-        'Filterizr' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/filterizr/jquery.filterizr.min.js'
-                ]
             ],
         ],
         'Summernote' => [

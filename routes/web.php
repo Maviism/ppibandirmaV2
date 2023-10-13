@@ -38,6 +38,7 @@ Route::prefix('admin')
             Route::get('/', [DashboardController::class, 'index'])->name('admin');
             Route::resource('/kabinet', KabinetController::class)->except(['show', 'update']);
             Route::resource('/event', EventController::class)->except('show');
+            Route::get('/event-analytic', [EventController::class, 'eventAnalytics']);
             Route::resource('/absensi', AbsensiController::class)->except(['index', 'store', 'update', 'edit']);
             Route::post('/absensi/user', [AbsensiController::class, 'store'])->name('absensi.store');
             Route::get('/design/create', [DesignRequestController::class, 'create'])->name('design.create');
