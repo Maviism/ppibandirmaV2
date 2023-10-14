@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Organisation;
 
 use App\Http\Controllers\Controller;
 use App\Models\Organisation\DesignRequest;
-use Illuminate\Http\Request;
+use App\Jobs\SendWhatsappJob;
 use App\Services\WhatsappService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -14,13 +15,12 @@ class DesignRequestController extends Controller
     /**
      * Display a listing of the resource.
      */
-
     protected $whatsappService;
-
     public function __construct(WhatsappService $whatsappService)
     {
         $this->whatsappService = $whatsappService;
     }
+
     public function index()
     {
         $designs = DesignRequest::orderBy('created_at', 'desc')->get();
@@ -78,9 +78,8 @@ class DesignRequestController extends Controller
         $message = "Ada request design lagi nih dari divisi " . $request->iDepartment . ".\nCek disini ya: " . $url;
         $recepient = config('whatsapp.recipient.medkraf.group_name');
         $is_group = config('whatsapp.recipient.medkraf.is_group');
-        $this->whatsappService->sendMessage($recepient, $is_group , $message); //send message to group
-        $this->whatsappService->sendMessage('905521559789', "false", $message); //send message to chief
-
+        dispatch(new SendWhatsappJob($this->whatsappService, $recepient, $is_group, $message));
+        dispatch(new SendWhatsappJob($this->whatsappService, '905521559789', "false", $message));
         return redirect('/admin');
     }
 
