@@ -10,6 +10,7 @@ use App\Http\Controllers\Event\AbsensiController;
 use App\Http\Controllers\Organisation\KabinetController;
 use App\Http\Controllers\Organisation\DesignRequestController;
 use App\Http\Controllers\Organisation\FrequentlyAskQuestionController;
+use App\Http\Controllers\Organisation\LinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,8 @@ use App\Http\Controllers\Organisation\FrequentlyAskQuestionController;
 |
 */
 
-Route::get('/', [DashboardController::class, 'welcome'])->name('index');
+Route::get('/', [LinkController::class, 'main'])->name('main');
+Route::get('/home', [DashboardController::class, 'welcome'])->name('index');
 Route::get('/event', function () { return view('Pages.event');})->name('event');
 Route::get('/member', function () { return view('Pages.member');})->name('member');
 Route::get('/artikel', function () { return view('Pages.artikel');})->name('artikel');
@@ -49,6 +51,9 @@ Route::prefix('admin')
 
         Route::middleware('role:adminkeu')->group(function(){
             Route::resource('/dataanggota', UserController::class)->except('show');
+            Route::resource('/links', LinkController::class)->except(['destroy', 'create', 'show', 'edit']);
+            Route::get('/link/{id}/delete', [LinkController::class, 'destroy']);
+
             Route::get('/datareview/{id}', [UserController::class, 'ShowUserReview']);
             Route::put('/datareview/{id}', [UserController::class, 'Update'])->name('datareview.approved');
             Route::get('/unapproveuser/{id}', [UserController::class, 'unapproveuser'])->name('deletedataanggota');

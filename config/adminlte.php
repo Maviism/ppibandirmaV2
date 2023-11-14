@@ -333,6 +333,11 @@ return [
                     'url'  => '/admin/dataalumni',
                     'icon' => 'fas fa-fw fa-graduation-cap',
                 ],
+                [
+                    'text' => 'Links',
+                    'url'  => '/admin/links',
+                    'icon' => 'fas fa-fw fa-link',
+                ],
             ],
         ],
         [
