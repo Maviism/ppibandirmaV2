@@ -7,7 +7,7 @@
         @if($post)
         <div class="sm:w-1/2 lg:w-1/3 pr-1">
             <div class="bg-[#D9D9D9] rounded-md px-2 py-3">
-                <img class="w-full h-full" src="{{ $post['_embedded']['wp:featuredmedia'][0]['source_url']}}" alt="">
+                <img class="w-full h-full" src="{{ $post['_embedded']['wp:featuredmedia'][0]['source_url'] ?? '-' }}" alt="">
                 <a href="{{$post['link']}}" class="w-72 mt-2 text-lg">{!! $post['title']['rendered'] !!}</a>
             </div>
         </div>

@@ -58,7 +58,7 @@
                     <ul class="products-list product-list-in-card pl-2 pr-2">
                         @forelse($designRequest as $design)
                         <li class="item">
-                                <a href="#" class="product-title">
+                                <a href="{{ config('app.url') }}/admin/design/{{$design->id}}/edit" class="product-title">
                                 {{$design->title}} 
                                 @if($design->status == 'reject')
                                 <span class="badge badge-danger float-right">{{$design->status}}</span>
